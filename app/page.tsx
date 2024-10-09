@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <div className="flex flex-col gap-3">
-        <h1 className="text-9xl font-bold text-center text-primary">
+        <h1 className="text-9xl font-bold text-center text-primary mb-5">
           Usuário
           <span className="font-light">Github</span>
         </h1>
