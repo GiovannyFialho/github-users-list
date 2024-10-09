@@ -3,6 +3,7 @@
 import { User } from "lucide-react";
 import { useState } from "react";
 
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default function Home() {
@@ -20,7 +21,7 @@ export default function Home() {
           <div
             className={`
               p-3 transition-all duration-300
-              ${inputFocus ? "bg-primary-invert" : "bg-primary"}
+              ${inputFocus ? "bg-primary-foreground" : "bg-primary"}
             `}
           >
             <User className="text-background" />
@@ -33,6 +34,13 @@ export default function Home() {
             onBlur={() => setInputFocus(false)}
           />
         </div>
+
+        <Button
+          type="button"
+          className="h-auto text-lg text-background font-medium uppercase rounded-none bg-primary hover:bg-primary-foreground"
+        >
+          Buscar
+        </Button>
       </div>
     </div>
   );
