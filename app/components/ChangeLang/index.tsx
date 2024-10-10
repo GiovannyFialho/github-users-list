@@ -1,6 +1,5 @@
 "use client";
 
-import i18next from "i18next";
 import Cookies from "js-cookie";
 import { Check, Languages } from "lucide-react";
 import { useTranslation } from "next-i18next";
@@ -25,23 +24,23 @@ import {
   DropdownMenuTrigger
 } from "@/app/components/ui/dropdown-menu";
 import { Skeleton } from "@/app/components/ui/skeleton";
+import i18next from "@/app/i18n";
 
 import { useMediaQuery } from "@/app/hooks/use-media-query";
 
 export default function ChangeLang() {
   const { t } = useTranslation();
-
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const [open, setOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState<string | null>(null);
 
   useEffect(() => {
-    const lang = i18next.language;
+    const storedLang = Cookies.get("i18next") || "";
 
-    if (lang) {
-      setCurrentLanguage(lang);
-    }
+    i18next.changeLanguage(storedLang);
+
+    setCurrentLanguage(storedLang);
   }, []);
 
   if (currentLanguage === null) {
@@ -109,7 +108,6 @@ export default function ChangeLang() {
           variant="outline"
         >
           <Languages className="text-background" />
-
           {t(`Shared.header.changeLang.${currentLanguage}`)}
         </Button>
       </DrawerTrigger>
@@ -118,7 +116,6 @@ export default function ChangeLang() {
         <DrawerHeader className="text-left">
           <DrawerTitle className="flex items-center gap-2 text-3xl text-background">
             <Languages className="text-background" />
-
             {t("Shared.header.changeLang.title")}
           </DrawerTitle>
         </DrawerHeader>
@@ -131,7 +128,6 @@ export default function ChangeLang() {
             {currentLanguage === "pt-BR" && (
               <Check className="text-background" />
             )}
-
             <p className="text-lg text-background">
               {t("Shared.header.changeLang.pt-BR")}
             </p>
@@ -144,7 +140,6 @@ export default function ChangeLang() {
             {currentLanguage === "en-US" && (
               <Check className="text-background" />
             )}
-
             <p className="text-lg text-background">
               {t("Shared.header.changeLang.en-US")}
             </p>

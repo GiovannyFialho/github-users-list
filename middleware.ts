@@ -1,11 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import i18next from "@/app/i18n";
+
 export default function middleware(request: NextRequest) {
+  const response = NextResponse.next();
+
   const themeCookie = request.cookies.get("theme")?.value;
+  const languageCookie = request.cookies.get("i18next")?.value;
+
+  const lang = languageCookie || i18next.language;
+  i18next.changeLanguage(lang);
 
   if (request.headers.get("Accept")?.includes("text/html")) {
-    const response = NextResponse.next();
-
     response.headers.set(
       "Accept-CH",
       "Sec-CH-Prefers-Color-Scheme, Sec-CH-Prefers-Contrast"
