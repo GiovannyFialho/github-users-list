@@ -1,9 +1,10 @@
 "use client";
 
 import i18next from "i18next";
+import Cookies from "js-cookie";
 import { Check, Languages } from "lucide-react";
+import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 
 import { Button } from "@/app/components/ui/button";
 import {
@@ -23,6 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/app/components/ui/dropdown-menu";
+import { Skeleton } from "@/app/components/ui/skeleton";
 
 import { useMediaQuery } from "@/app/hooks/use-media-query";
 
@@ -32,19 +34,31 @@ export default function ChangeLang() {
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const [open, setOpen] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState("");
+  const [currentLanguage, setCurrentLanguage] = useState<string | null>(null);
 
   useEffect(() => {
-    if (i18next.language !== "") {
-      setCurrentLanguage(i18next.language);
+    const lang = i18next.language;
+
+    if (lang) {
+      setCurrentLanguage(lang);
     }
   }, []);
+
+  if (currentLanguage === null) {
+    return <Skeleton className="w-32 h-10 rounded-none bg-primary"></Skeleton>;
+  }
 
   function handleLanguageChange(language: string) {
     setCurrentLanguage(language);
     setOpen(false);
 
     i18next.changeLanguage(language);
+
+    Cookies.set("i18next", language, {
+      path: "/",
+      sameSite: "strict",
+      expires: 365
+    });
   }
 
   if (isDesktop) {
@@ -56,7 +70,6 @@ export default function ChangeLang() {
             variant="outline"
           >
             <Languages className="text-background" />
-
             {t(`Shared.header.changeLang.${currentLanguage}`)}
           </Button>
         </DropdownMenuTrigger>

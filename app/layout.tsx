@@ -23,15 +23,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // Acessa os headers da requisição
   const headersList = headers();
 
-  // Tenta pegar o valor de `sec-ch-prefers-color-scheme` do header
   const preferTheme = headersList.get("sec-ch-prefers-color-scheme") || "";
   const cookieTheme =
     headersList.get("cookie")?.match(/theme=([^;]*)/)?.[1] || "";
 
-  // Define o tema a partir do cookie ou da preferência do usuário
   const theme = cookieTheme || (preferTheme === "dark" ? "dark" : "light");
 
   return (

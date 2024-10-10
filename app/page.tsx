@@ -1,9 +1,9 @@
 "use client";
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
+import { useEffect, useState } from "react";
 
 import SearchUser from "@/app/components/SearchUser";
-import { useEffect, useState } from "react";
 
 export default function Home() {
   const { t } = useTranslation();
