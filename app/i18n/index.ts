@@ -4,16 +4,11 @@ import { initReactI18next } from "react-i18next";
 
 import translations from "@/app/i18n/locales";
 
-const getLanguageFromCookie = () => {
-  return "pt-BR";
-};
-
-const i18nConfig = {
+export const i18nConfig = {
   resources: translations,
   defaultNS: "translations",
-  fallbackLng: getLanguageFromCookie(),
+  fallbackLng: "pt-BR",
   interpolation: { escapeValue: false },
-  lng: getLanguageFromCookie(),
   detection: {
     order: ["cookie", "header", "navigator"],
     caches: ["cookie"]

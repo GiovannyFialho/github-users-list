@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import i18next from "@/app/i18n";
+import i18next, { i18nConfig } from "@/app/i18n";
 
 export default function middleware(request: NextRequest) {
   const response = NextResponse.next();
@@ -9,7 +9,10 @@ export default function middleware(request: NextRequest) {
   const languageCookie = request.cookies.get("i18next")?.value;
 
   const lang = languageCookie || i18next.language;
-  i18next.changeLanguage(lang);
+  i18next.init({
+    ...i18nConfig,
+    lng: lang
+  });
 
   if (request.headers.get("Accept")?.includes("text/html")) {
     response.headers.set(
