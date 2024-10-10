@@ -5,6 +5,7 @@
     "source.fixAll.eslint": "always"
   },
   "typescript.preferences.importModuleSpecifier": "relative",
-  "typescript.updateImportsOnFileMove.enabled": "always"
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "json.schemas": []
 }
 

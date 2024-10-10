@@ -6,7 +6,8 @@ export default {
     changeLang: {
       title: "Escolha uma língua",
       "pt-BR": "Português",
-      "en-US": "Inglês"
+      "en-US": "Inglês",
+      cancel: "Cancelar"
     }
   },
   loading: 'Carregando',
