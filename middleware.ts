@@ -3,7 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 export default function middleware(request: NextRequest) {
   const themeCookie = request.cookies.get("theme")?.value;
 
-  // Checa se o request é para um documento HTML
   if (request.headers.get("Accept")?.includes("text/html")) {
     const response = NextResponse.next();
 
