@@ -1,6 +1,13 @@
 export default {
-  head:{
-    title: "Github List"
+  head: {
+    title: "Github Listing",
   },
-  loading: 'Loading',
+  header: {
+    changeLang: {
+      title: "Choose a language",
+      "pt-BR": "Portuguese",
+      "en-US": "English",
+    },
+  },
+  loading: "Loading",
 };
