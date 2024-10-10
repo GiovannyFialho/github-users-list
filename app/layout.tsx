@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { Roboto } from "next/font/google";
+import { headers } from "next/headers";
 
 import Header from "@/app/components/Header";
 import { Providers } from "@/app/providers";
@@ -22,24 +23,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.documentElement.classList.add('dark')
-                } else {
-                  document.documentElement.classList.remove('dark')
-                }
-              } catch (_) {}
-            `
-          }}
-        />
-      </head>
+  // Acessa os headers da requisição
+  const headersList = headers();
 
+  // Tenta pegar o valor de `sec-ch-prefers-color-scheme` do header
+  const preferTheme = headersList.get("sec-ch-prefers-color-scheme") || "";
+  const cookieTheme =
+    headersList.get("cookie")?.match(/theme=([^;]*)/)?.[1] || "";
+
+  // Define o tema a partir do cookie ou da preferência do usuário
+  const theme = cookieTheme || (preferTheme === "dark" ? "dark" : "light");
+
+  return (
+    <html lang="en" className={theme}>
       <body className={roboto.className}>
         <Providers>
           <Header />
