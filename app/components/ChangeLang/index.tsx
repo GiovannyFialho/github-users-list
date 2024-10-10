@@ -1,6 +1,5 @@
 "use client";
 
-import Cookies from "js-cookie";
 import { Check, Languages } from "lucide-react";
 import { useTranslation } from "next-i18next";
 import { useEffect, useState } from "react";
@@ -24,24 +23,19 @@ import {
   DropdownMenuTrigger
 } from "@/app/components/ui/dropdown-menu";
 import { Skeleton } from "@/app/components/ui/skeleton";
-import i18next from "@/app/i18n";
 
 import { useMediaQuery } from "@/app/hooks/use-media-query";
 
 export default function ChangeLang() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const [open, setOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState<string | null>(null);
 
   useEffect(() => {
-    const storedLang = Cookies.get("i18next") || "";
-
-    i18next.changeLanguage(storedLang);
-
-    setCurrentLanguage(storedLang);
-  }, []);
+    setCurrentLanguage(i18n.language);
+  }, [i18n]);
 
   if (currentLanguage === null) {
     return <Skeleton className="w-32 h-10 rounded-none bg-primary"></Skeleton>;
@@ -51,13 +45,7 @@ export default function ChangeLang() {
     setCurrentLanguage(language);
     setOpen(false);
 
-    i18next.changeLanguage(language);
-
-    Cookies.set("i18next", language, {
-      path: "/",
-      sameSite: "strict",
-      expires: 365
-    });
+    i18n.changeLanguage(language);
   }
 
   if (isDesktop) {

@@ -25,9 +25,6 @@ export default function RootLayout({
 }>) {
   const headersList = headers();
 
-  const cookieLanguage = headersList.get("cookie");
-  const currentLanguage = cookieLanguage?.split("i18next=")[1];
-
   const preferTheme = headersList.get("sec-ch-prefers-color-scheme") || "";
   const cookieTheme =
     headersList.get("cookie")?.match(/theme=([^;]*)/)?.[1] || "";
@@ -35,7 +32,7 @@ export default function RootLayout({
   const theme = cookieTheme || (preferTheme === "dark" ? "dark" : "light");
 
   return (
-    <html lang={currentLanguage} className={theme}>
+    <html className={theme}>
       <body className={roboto.className}>
         <Providers>
           <Header />
