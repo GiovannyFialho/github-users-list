@@ -1,4 +1,3 @@
-import { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { headers } from "next/headers";
 
@@ -12,11 +11,6 @@ const roboto = Roboto({
   subsets: ["latin"],
   display: "swap"
 });
-
-export const metadata: Metadata = {
-  title: "Github List",
-  description: "A list based on github's users"
-};
 
 export default function RootLayout({
   children

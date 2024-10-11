@@ -1,6 +1,6 @@
 export default {
-  head:{
-    title: "Listagem Github",
+  head: {
+    description: "Uma lista baseada em usuários do Github"
   },
   header: {
     changeLang: {
@@ -10,5 +10,5 @@ export default {
       cancel: "Cancelar"
     }
   },
-  loading: 'Carregando',
+  loading: "Carregando"
 };

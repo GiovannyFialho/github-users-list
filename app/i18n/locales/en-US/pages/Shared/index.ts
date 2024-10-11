@@ -1,6 +1,6 @@
 export default {
   head: {
-    title: "Github Listing",
+    description: "A list based on Github's users"
   },
   header: {
     changeLang: {
@@ -8,7 +8,7 @@ export default {
       "pt-BR": "Portuguese",
       "en-US": "English",
       cancel: "Cancel"
-    },
+    }
   },
-  loading: "Loading",
+  loading: "Loading"
 };

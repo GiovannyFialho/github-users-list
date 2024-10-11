@@ -4,6 +4,8 @@ import { initReactI18next } from "react-i18next";
 
 import translations from "@/app/i18n/locales";
 
+export type SupportedLanguages = "pt-BR" | "en-US";
+
 export const i18nConfig = {
   resources: translations,
   defaultNS: "translations",
