@@ -1,8 +1,10 @@
 "use client";
 
+import { CircleUser, LogOut } from "lucide-react";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslation } from "react-i18next";
 
 import { Button } from "@/app/components/ui/button";
 import {
@@ -13,9 +15,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/app/components/ui/dropdown-menu";
-import { CircleUser, LogOut } from "lucide-react";
 
 export default function Profile() {
+  const { t } = useTranslation();
   const { data: sessionData, status } = useSession();
 
   function handleSignOut() {
@@ -27,7 +29,7 @@ export default function Profile() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button className="w-10 h-10 p-1 border-2 border-primary rounded-none bg-background">
+        <Button className="w-10 h-10 p-1 border-2 border-primary rounded-none bg-primary focus-visible:ring-0 hover:bg-primary-foreground">
           {sessionData.user?.image ? (
             <Image
               src={sessionData.user?.image}
@@ -41,29 +43,31 @@ export default function Profile() {
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="w-auto mr-5 rounded-none bg-primary">
-        <DropdownMenuLabel className="text-base text-background font-medium">
-          Olá, {sessionData.user?.name}
+      <DropdownMenuContent className="w-auto mr-5 p-0 rounded-none bg-primary">
+        <DropdownMenuLabel className="flex items-center">
+          <p className="text-base text-background font-medium px-2 py-1 pt-2">
+            {t("Profile.control.hello", { name: sessionData.user?.name })}
+          </p>
         </DropdownMenuLabel>
 
-        <DropdownMenuSeparator />
+        <DropdownMenuSeparator className="my-0" />
 
-        <DropdownMenuItem className="cursor-pointer rounded-none focus:bg-primary-foreground">
+        <DropdownMenuItem asChild>
           <Link
             href="/profile"
-            className="text-background hover:bg-primary-foreground"
+            className="cursor-pointer text-sm text-background h-10 px-3 py-2 rounded-none focus:bg-primary-foreground focus:text-background"
           >
-            Perfil (fazer)
+            {t("Profile.head.title")}
           </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem className="cursor-pointer rounded-none focus:bg-primary-foreground">
+        <DropdownMenuItem asChild className="cursor-pointer h-10 rounded-none">
           <Button
-            className="w-full flex items-center justify-start gap-2 text-background p-0 m-0 bg-transparent"
+            className="w-full flex items-center justify-start gap-2 text-sm text-background px-3 py-2 bg-transparent focus:bg-primary-foreground focus:text-background focus-visible:ring-0 focus-visible:ring-offset-0"
             onClick={handleSignOut}
           >
-            <LogOut className="text-background" />
-            Sign Out
+            <LogOut size={15} className="text-background" />
+            {t("Profile.control.signout")}
           </Button>
         </DropdownMenuItem>
       </DropdownMenuContent>

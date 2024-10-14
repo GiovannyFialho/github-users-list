@@ -1,6 +1,6 @@
 export default {
   head: {
-    title: "Sign In"
+    title: "Iniciar Sessão"
   },
   title: "Bem-vindo de volta!",
   subtitle:

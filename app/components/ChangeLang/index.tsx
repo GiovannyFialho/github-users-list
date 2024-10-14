@@ -61,12 +61,14 @@ export default function ChangeLang() {
           </Button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent className="w-56 rounded-none bg-primary">
-          <DropdownMenuLabel className="text-base text-background font-medium">
-            {t("Shared.header.changeLang.title")}
+        <DropdownMenuContent className="w-56 p-0 rounded-none bg-primary">
+          <DropdownMenuLabel className="flex items-center">
+            <p className="text-base text-background font-medium px-2 py-1 pt-2">
+              {t("Shared.header.changeLang.title")}
+            </p>
           </DropdownMenuLabel>
 
-          <DropdownMenuSeparator />
+          <DropdownMenuSeparator className="my-0" />
 
           <DropdownMenuCheckboxItem
             checked={currentLanguage === "pt-BR"}
