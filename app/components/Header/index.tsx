@@ -1,5 +1,6 @@
 import ChangeLang from "@/app/components/ChangeLang";
 import ChangeTheme from "@/app/components/ChangeTheme";
+import Profile from "@/app/components/Profile";
 
 export default function Header() {
   return (
@@ -7,6 +8,8 @@ export default function Header() {
       <ChangeLang />
 
       <ChangeTheme />
+
+      <Profile />
     </header>
   );
 }

@@ -2,6 +2,7 @@ import { Roboto } from "next/font/google";
 import { headers } from "next/headers";
 
 import Header from "@/app/components/Header";
+import { Toaster } from "@/app/components/ui/toaster";
 import { Providers } from "@/app/providers";
 
 import "@/app/style/globals.css";
@@ -32,6 +33,8 @@ export default function RootLayout({
           <Header />
 
           <main>{children}</main>
+
+          <Toaster />
         </Providers>
       </body>
     </html>

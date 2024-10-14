@@ -1,5 +1,6 @@
 "use client";
 
+import { SessionProvider } from "next-auth/react";
 import { useEffect, useState, type ReactNode } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
 
@@ -16,5 +17,9 @@ export function Providers({ children }: { children: ReactNode }) {
 
   if (!isReady) return null;
 
-  return <I18nextProvider i18n={i18next}>{children}</I18nextProvider>;
+  return (
+    <SessionProvider>
+      <I18nextProvider i18n={i18next}>{children}</I18nextProvider>
+    </SessionProvider>
+  );
 }
