@@ -9,4 +9,4 @@ npm install && npm run dev
 - Palette Generator: [Realtime Colors](https://www.realtimecolors.com/)
 
 ### Auth
-- Authentication library.: [Next Auth](https://next-auth.js.org/)
+- Authentication library: [Next Auth](https://next-auth.js.org/)
