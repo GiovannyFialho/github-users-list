@@ -2,7 +2,7 @@ import { Roboto } from "next/font/google";
 import { headers } from "next/headers";
 
 import Header from "@/app/components/Header";
-import { Toaster } from "@/app/components/ui/toaster";
+import { Toaster } from "@/app/components/ui/sonner";
 import { Providers } from "@/app/providers";
 
 import "@/app/style/globals.css";

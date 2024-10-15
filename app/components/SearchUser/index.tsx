@@ -22,9 +22,7 @@ export default function SearchUser({ search }: SearchUserProps) {
   }
 
   function handleSearchUser() {
-    if (searchUser !== "") {
-      return search?.(searchUser);
-    }
+    return search?.(searchUser);
   }
 
   return (

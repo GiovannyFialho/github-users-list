@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import ChangeLang from "@/app/components/ChangeLang";
@@ -11,9 +12,30 @@ import Profile from "@/app/components/Profile";
 export default function Header() {
   const { t } = useTranslation();
   const pathname = usePathname();
+  const [hasShadow, setHasShadow] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setHasShadow(true);
+      } else {
+        setHasShadow(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
-    <header className="w-full h-auto sticky top-0 flex items-center justify-between px-5 py-3">
+    <header
+      className={`w-full h-auto sticky top-0 flex items-center justify-between px-5 py-3 bg-background transition-shadow duration-300 ${
+        hasShadow ? "shadow-md" : ""
+      }`}
+    >
       <nav className="flex items-center gap-2">
         {pathname !== "/sign-in" && (
           <Link

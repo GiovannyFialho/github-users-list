@@ -1,10 +1,12 @@
 "use client";
 
+import { ApolloProvider } from "@apollo/client";
 import { SessionProvider } from "next-auth/react";
 import { useEffect, useState, type ReactNode } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
 
 import i18next from "@/app/i18n";
+import { client } from "@/app/lib/client";
 
 export function Providers({ children }: { children: ReactNode }) {
   const { i18n } = useTranslation();
@@ -18,8 +20,10 @@ export function Providers({ children }: { children: ReactNode }) {
   if (!isReady) return null;
 
   return (
-    <SessionProvider>
-      <I18nextProvider i18n={i18next}>{children}</I18nextProvider>
-    </SessionProvider>
+    <ApolloProvider client={client}>
+      <SessionProvider>
+        <I18nextProvider i18n={i18next}>{children}</I18nextProvider>
+      </SessionProvider>
+    </ApolloProvider>
   );
 }

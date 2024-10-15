@@ -1,12 +1,25 @@
-# Github user list
+# GitHub User List
 
 ## Initialize
 ```
 npm install && npm run dev
 ```
 
-### Refs
+### References for color palettes
 - Palette Generator: [Realtime Colors](https://www.realtimecolors.com/)
 
-### Auth
-- Authentication library: [Next Auth](https://next-auth.js.org/)
+
+
+### Authentication
+- Authentication library: [NextAuth](https://next-auth.js.org/)
+
+### Libraries
+
+#### Internationalization
+- [React i18next](https://react.i18next.com/)
+
+#### Requests
+> GraphQL was used to search for users in the GitHub API.
+
+- [Apollo Client](https://www.apollographql.com/)
+- [GraphQL Codegen](https://the-guild.dev/graphql/codegen) (For generating types for Queries, Mutations, and Fragments)

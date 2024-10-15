@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleUser } from "lucide-react";
+import { CircleUser, Mail, User } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
@@ -24,9 +24,21 @@ export default function ProfileComponent() {
             <CircleUser size={200} />
           )}
 
-          <p className="text-7xl font-medium text-primary">
-            {sessionData?.user?.name}
-          </p>
+          <div className="flex flex-col gap-2">
+            <h2 className="text-7xl font-medium text-primary">
+              {sessionData?.user?.name}
+            </h2>
+
+            <div className="flex items-center gap-2">
+              <User size={15} />
+              <p className="text-base font-light">{sessionData?.user?.login}</p>
+            </div>
+
+            <div className="flex items-center gap-2">
+              <Mail size={15} />
+              <p className="text-base font-light">{sessionData?.user?.email}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
