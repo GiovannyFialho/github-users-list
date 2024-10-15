@@ -43,7 +43,7 @@ export default function ChangeTheme() {
 
   return (
     <div
-      className="cursor-pointer w-auto h-10 flex items-center justify-center p-2 bg-primary hover:bg-primary-foreground"
+      className="cursor-pointer w-12 h-12 lg:w-auto lg:h-10 flex items-center border-none justify-center lg:p-2 bg-primary hover:bg-primary-foreground"
       onClick={handleChangeTheme}
     >
       <SunMoon className="text-background" />

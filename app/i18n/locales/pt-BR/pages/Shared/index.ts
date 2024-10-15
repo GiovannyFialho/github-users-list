@@ -4,7 +4,9 @@ export default {
   },
   header: {
     changeLang: {
-      title: "Escolha uma língua",
+      title: "Selecione o Idioma",
+      description:
+        "Selecione o idioma desejado para navegar no site de forma mais personalizada e acessível.",
       "pt-BR": "Português",
       "en-US": "Inglês",
       cancel: "Cancelar"

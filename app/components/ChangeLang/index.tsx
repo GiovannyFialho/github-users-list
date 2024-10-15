@@ -9,6 +9,7 @@ import {
   Drawer,
   DrawerClose,
   DrawerContent,
+  DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
@@ -28,7 +29,8 @@ import { useMediaQuery } from "@/app/hooks/use-media-query";
 
 export default function ChangeLang() {
   const { t, i18n } = useTranslation();
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
 
   const [open, setOpen] = useState(false);
   const [currentLanguage, setCurrentLanguage] = useState<string | null>(null);
@@ -53,7 +55,8 @@ export default function ChangeLang() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            className="w-auto h-10 flex items-center gap-2 rounded-none text-background hover:text-background bg-primary hover:bg-primary-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+            type="button"
+            className="w-auto h-10 flex items-center gap-2 border-none rounded-none text-background hover:text-background bg-primary hover:bg-primary-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
             variant="outline"
           >
             <Languages className="text-background" />
@@ -94,23 +97,27 @@ export default function ChangeLang() {
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button
-          className="w-auto h-10 flex items-center gap-2 rounded-none text-background hover:text-background bg-primary hover:bg-primary-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
+          type="button"
+          className="w-12 h-12 flex items-center gap-2 p-0 border-none rounded-none text-background hover:text-background bg-primary hover:bg-primary-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
           variant="outline"
         >
           <Languages className="text-background" />
-          {t(`Shared.header.changeLang.${currentLanguage}`)}
         </Button>
       </DrawerTrigger>
 
-      <DrawerContent className="rounded-none bg-primary">
+      <DrawerContent className="rounded-none bg-primary border-none">
         <DrawerHeader className="text-left">
           <DrawerTitle className="flex items-center gap-2 text-3xl text-background">
             <Languages className="text-background" />
             {t("Shared.header.changeLang.title")}
           </DrawerTitle>
+
+          <DrawerDescription className="text-sm text-background font-light">
+            {t("Shared.header.changeLang.description")}
+          </DrawerDescription>
         </DrawerHeader>
 
-        <div className="flex flex-col gap-3 px-4">
+        <div className="flex flex-col gap px-4">
           <div
             className="flex items-center gap-2 py-3 px-2 transition-all duration-300 hover:bg-primary-foreground"
             onClick={() => handleLanguageChange("pt-BR")}

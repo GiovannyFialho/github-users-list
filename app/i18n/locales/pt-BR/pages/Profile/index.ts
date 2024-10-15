@@ -4,7 +4,8 @@ export default {
   },
   control: {
     signout: "Encerrar Sessão",
-    hello: "Olá, {{ name }}"
+    title: "Olá, {{ name }}",
+    description: "Gerencie suas preferências e configurações pessoais."
   },
   avatar: {
     alt: "Imagem de perfil do {{ name }}"

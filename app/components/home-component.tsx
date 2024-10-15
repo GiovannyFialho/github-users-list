@@ -1,23 +1,25 @@
 "use client";
 
+import { CircleUser } from "lucide-react";
 import { useTranslation } from "next-i18next";
-import { Fragment, useEffect } from "react";
+import Image from "next/image";
+import { Fragment, useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
+import { toast } from "sonner";
 
 import SearchUser from "@/app/components/SearchUser";
-import { toast } from "sonner";
 
 import { useGetUsersLazyQuery } from "@/app/graphql/generated";
 
 import tailwindConfig from "@/tailwind.config";
-import { CircleUser } from "lucide-react";
-import Image from "next/image";
 
 export default function HomeComponent() {
   const { t } = useTranslation();
 
   const [getUsers, { data: users, loading: loadingUsers, error: errorUsers }] =
     useGetUsersLazyQuery();
+
+  const [initialState, setInitialState] = useState(true);
 
   useEffect(() => {
     if (errorUsers) {
@@ -30,11 +32,17 @@ export default function HomeComponent() {
   }, [t, errorUsers]);
 
   const handleSearch = (value: string) => {
+    if (value === "") {
+      setInitialState(true);
+    } else {
+      setInitialState(false);
+    }
+
     getUsers({ variables: { query: value, first: 10 } });
   };
 
   return (
-    <div className="w-full min-h-[calc(100vh-104px)] flex flex-col md:items-center justify-center gap-10 my-10 md:mt-0">
+    <div className="w-full lg:min-h-[calc(100vh-104px)] flex flex-col lg:items-center lg:justify-center gap-10 my-10 md:mt-0">
       <div className="max-w-5xl w-full flex flex-col gap-3 px-5">
         <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-center text-primary mb-5">
           {t("Home.title")}
@@ -53,9 +61,13 @@ export default function HomeComponent() {
         ) : (
           <Fragment>
             {users?.search.edges?.length === 0 ? (
-              <p className="text-lg text-center">
-                {t("Home.requests.searchUsers.nobody")}
-              </p>
+              <Fragment>
+                {initialState === false && (
+                  <p className="text-lg text-center">
+                    {t("Home.requests.searchUsers.nobody")}
+                  </p>
+                )}
+              </Fragment>
             ) : (
               <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 px-5">
                 {users?.search.edges?.map((edge) => {

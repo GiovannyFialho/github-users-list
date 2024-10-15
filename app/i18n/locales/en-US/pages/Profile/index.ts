@@ -4,9 +4,10 @@ export default {
   },
   control: {
     signout: "Sign Out",
-    hello: "Hello, {{ name }}"
+    title: "Hello, {{ name }}",
+    description: "Manage your preferences and personal settings."
   },
   avatar: {
-    alt: "{{ name }}'s profile picture"
+    alt: "Profile picture of {{ name }}"
   }
 };
