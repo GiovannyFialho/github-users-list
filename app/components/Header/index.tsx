@@ -74,8 +74,10 @@ export default function Header() {
               <Link
                 href="/"
                 className={`
-                  w-max text-lg font-medium mt-10 py-0 px-2 border-b
-                  ${pathname === "/" ? "border-primary" : "border-transparent"}
+                  w-max text-lg font-medium py-0 px-2 transition-all duration-200
+                  relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-primary after:w-full
+                  after:origin-left after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100
+                  ${pathname === "/" ? "after:scale-x-100" : ""}
                 `}
               >
                 {t("Home.itemMenu")}
@@ -119,7 +121,7 @@ export default function Header() {
                   variant="link"
                   onClick={handleGoToHome}
                   className={`
-                    w-max text-lg font-medium mt-10 py-0 px-2 border-b
+                    w-max text-lg font-medium mt-10 py-0 px-2 border-b hover:no-underline hover:border-primary
                     ${
                       pathname === "/" ? "border-primary" : "border-transparent"
                     }

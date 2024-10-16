@@ -4,24 +4,23 @@ import { LogIn } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import { toast } from "sonner";
 
 import { Button } from "@/app/components/ui/button";
-
-import { useToast } from "@/app/hooks/use-toast";
 
 export default function SignInComponent() {
   const { t } = useTranslation();
   const { status } = useSession();
-  const { toast } = useToast();
   const { push } = useRouter();
 
   const handleSignIn = async () => {
     const result = await signIn("github", { redirect: true, callbackUrl: "/" });
 
     if (result?.error) {
-      toast({
-        title: "Falha no login. Por favor, tente novamente.",
-        variant: "destructive"
+      toast(t("Shared.toast.error.title"), {
+        description: t("Shared.toast.error.login"),
+        duration: 5000,
+        position: "top-right"
       });
     }
   };

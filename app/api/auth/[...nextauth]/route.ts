@@ -16,6 +16,7 @@ const handler = NextAuth({
 
         token.id = githubProfile.id as string;
         token.login = githubProfile.login as string;
+        token.company = githubProfile.company as string;
       }
 
       return token;
@@ -23,6 +24,7 @@ const handler = NextAuth({
     async session({ session, token }) {
       session.user.id = token.id as string;
       session.user.login = token.login as string;
+      session.user.company = token.comapany as string;
 
       return session;
     }

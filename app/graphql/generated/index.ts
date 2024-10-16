@@ -31711,7 +31711,7 @@ export type GetUserQueryVariables = Exact<{
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', avatarUrl: any, bio?: string | null, id: string, company?: string | null } | null };
+export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null, email: string, avatarUrl: any, bio?: string | null, company?: string | null, login: string } | null };
 
 export type GetUsersQueryVariables = Exact<{
   query: Scalars['String']['input'];
@@ -31725,10 +31725,13 @@ export type GetUsersQuery = { __typename?: 'Query', search: { __typename?: 'Sear
 export const GetUserDocument = gql`
     query GetUser($login: String!) {
   user(login: $login) {
+    id
+    name
+    email
     avatarUrl
     bio
-    id
     company
+    login
   }
 }
     `;

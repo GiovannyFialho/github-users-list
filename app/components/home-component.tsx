@@ -12,6 +12,7 @@ import SearchUser from "@/app/components/SearchUser";
 import { useGetUsersLazyQuery } from "@/app/graphql/generated";
 
 import tailwindConfig from "@/tailwind.config";
+import Link from "next/link";
 
 export default function HomeComponent() {
   const { t } = useTranslation();
@@ -73,9 +74,10 @@ export default function HomeComponent() {
                 {users?.search.edges?.map((edge) => {
                   if (edge?.node?.__typename === "User") {
                     return (
-                      <div
+                      <Link
                         key={edge.node.id}
-                        className="w-full flex gap-3 border-4 border-primary"
+                        href={`/${edge.node.id}/${edge.node.login}`}
+                        className="w-full flex gap-3 border-4 border-primary transition-all duration-300 shadow-lg hover:shadow"
                       >
                         {edge.node.avatarUrl ? (
                           <Image
@@ -96,7 +98,7 @@ export default function HomeComponent() {
                             {edge.node.login}
                           </p>
                         </div>
-                      </div>
+                      </Link>
                     );
                   }
 

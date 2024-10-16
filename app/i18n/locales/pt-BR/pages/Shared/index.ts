@@ -12,5 +12,11 @@ export default {
       cancel: "Cancelar"
     }
   },
-  loading: "Carregando"
+  loading: "Carregando",
+  toast: {
+    error: {
+      title: "Ops!",
+      login: "Falha no login. Por favor, tente novamente mais tarde."
+    }
+  }
 };
