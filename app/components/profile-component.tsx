@@ -2,6 +2,7 @@
 
 import { useSession } from "next-auth/react";
 
+import ProfileBodyDescription from "@/app/components/ProfileBodyDescription";
 import UserAvatar from "@/app/components/UserAvatar";
 import UserHeaderDescription from "@/app/components/UserHeaderDescription";
 
@@ -16,6 +17,8 @@ export default function ProfileComponent() {
 
           <UserHeaderDescription data={sessionData?.user} />
         </div>
+
+        <ProfileBodyDescription data={sessionData?.user} />
       </div>
     </div>
   );

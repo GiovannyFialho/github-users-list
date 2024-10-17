@@ -4,10 +4,10 @@ import { Building, CalendarDays, Mail, User, Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { RxDividerVertical } from "react-icons/rx";
 
-import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
+import { type UserProfile } from "@/app/components/user-detail-component";
 
 interface UserHeaderDescriptionProps {
-  data?: Partial<GitHubProfile>;
+  data?: UserProfile;
 }
 
 export default function UserHeaderDescription({

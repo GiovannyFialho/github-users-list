@@ -5,12 +5,12 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 
+import { type UserProfile } from "@/app/components/user-detail-component";
+
 import { useMediaQuery } from "@/app/hooks/use-media-query";
 
-import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
-
 interface UserAvatarProps {
-  data?: Partial<GitHubProfile>;
+  data?: UserProfile;
 }
 
 export default function UserAvatar({ data }: UserAvatarProps) {

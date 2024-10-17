@@ -4,31 +4,10 @@ import { CircleDot, GitFork, GitPullRequestArrow, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
-import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
-
-type RepositoryWithTotalProps = {
-  totalCount: number;
-};
-
-type RepositoryProps = {
-  id: string;
-  name: string;
-  description: string;
-  url: string;
-  issues: RepositoryWithTotalProps;
-  pullRequests: RepositoryWithTotalProps;
-  forks: RepositoryWithTotalProps;
-};
-
-type SocialAccountsProps = {
-  node: {
-    provider: string;
-    displayName: string;
-  };
-};
+import { type GetUserQuery } from "@/app/graphql/generated";
 
 interface UserBodyDescriptionProps {
-  data?: Partial<GitHubProfile>;
+  data?: Partial<GetUserQuery["user"]>;
 }
 
 export default function UserBodyDescription({
@@ -40,18 +19,7 @@ export default function UserBodyDescription({
     return null;
   }
 
-  const { bio, location } = data;
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  //@ts-expect-error
-  const socialAccounts = data?.social_accounts || data?.socialAccounts;
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  const userURL = data?.html_url || data?.url;
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const repositories = data?.repositories || null;
+  const { bio, location, repositories, socialAccounts, url } = data;
 
   return (
     <div className="flex flex-col gap-5">
@@ -79,25 +47,28 @@ export default function UserBodyDescription({
         </div>
       )}
 
-      {repositories && (
+      {repositories?.nodes && (
         <div>
           <h2 className="text-3xl font-bold text-primary mb-3">
             {t("Profile.repositories")}
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            {repositories?.nodes?.map((repository: RepositoryProps) => (
-              <div
-                key={repository.id}
+            {repositories?.nodes?.map((repository) => (
+              <a
+                href={repository?.url}
+                key={repository?.id}
                 className="w-full h-44 flex flex-col justify-between gap-5 px-3 py-2 bg-primary"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <div className="flex flex-col">
                   <h3 className="text-2xl font-bold text-background">
-                    {repository.name}
+                    {repository?.name}
                   </h3>
 
                   <p className="max-h-[3rem] text-sm font-normal text-background overflow-hidden text-ellipsis line-clamp-1">
-                    {repository.description}
+                    {repository?.description}
                   </p>
                 </div>
 
@@ -109,7 +80,7 @@ export default function UserBodyDescription({
                     </p>
 
                     <p className="text-2xl font-bold text-background">
-                      {repository.issues.totalCount}
+                      {repository?.issues.totalCount}
                     </p>
                   </div>
 
@@ -123,7 +94,7 @@ export default function UserBodyDescription({
                     </p>
 
                     <p className="text-2xl font-bold text-background">
-                      {repository.pullRequests.totalCount}
+                      {repository?.pullRequests.totalCount}
                     </p>
                   </div>
 
@@ -134,25 +105,25 @@ export default function UserBodyDescription({
                     </p>
 
                     <p className="text-2xl font-bold text-background">
-                      {repository.forks.totalCount}
+                      {repository?.forks.totalCount}
                     </p>
                   </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
       )}
 
-      {socialAccounts?.edges.length > 0 && (
+      {socialAccounts?.edges && (
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl font-bold text-primary">
             {t("Profile.socialMedia")}
           </h2>
 
           <div className="flex flex-col gap-2">
-            {socialAccounts?.edges.map((social: SocialAccountsProps) => {
-              if (social.node.provider === "LINKEDIN") {
+            {socialAccounts?.edges.map((social) => {
+              if (social?.node?.provider === "LINKEDIN") {
                 return (
                   <div
                     className="flex items-center gap-2"
@@ -172,11 +143,11 @@ export default function UserBodyDescription({
                 );
               }
 
-              if (social.node.provider === "TWITTER") {
+              if (social?.node?.provider === "TWITTER") {
                 return (
                   <div
                     className="flex items-center gap-2"
-                    key={social.node.displayName}
+                    key={social?.node.displayName}
                   >
                     <FaXTwitter />
 
@@ -198,9 +169,9 @@ export default function UserBodyDescription({
         </div>
       )}
 
-      {userURL !== "" && (
+      {url !== "" && (
         <a
-          href={userURL}
+          href={url}
           target="_blank"
           rel="noopener noreferrer"
           className="w-max flex items-center gap-2 text-lg font-medium text-background px-3 py-1 mt-20 shadow-lg bg-primary transition-all duration-300 hover:shadow"

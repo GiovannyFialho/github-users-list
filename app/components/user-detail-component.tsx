@@ -7,9 +7,14 @@ import UserBodyDescription from "@/app/components/UserBodyDescription";
 import UserHeaderDescription from "@/app/components/UserHeaderDescription";
 
 import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
+import { type GetUserQuery } from "@/app/graphql/generated";
+
+export type UserProfile =
+  | Partial<GitHubProfile>
+  | Partial<GetUserQuery["user"]>;
 
 interface UserDetailComponentProps {
-  data: Partial<GitHubProfile>;
+  data: Partial<GetUserQuery["user"]>;
 }
 
 export default function UserDetailComponent({
