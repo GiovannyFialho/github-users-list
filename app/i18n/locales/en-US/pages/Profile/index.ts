@@ -11,5 +11,10 @@ export default {
     alt: "Profile picture of {{ name }}"
   },
   nobody: "No user found",
-  biography: "Biography"
+  biography: "Biography",
+  location: "Location",
+  socialMedia: "Social Media",
+  fullProfile: "See full profile",
+  followers: "{{ quantity }} followers",
+  following: "{{ quantity }} following"
 };

@@ -10,6 +10,23 @@ const GET_USER = gql`
       bio
       company
       login
+      location
+      createdAt
+      url
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
+      socialAccounts(first: 5) {
+        edges {
+          node {
+            provider
+            displayName
+          }
+        }
+      }
     }
   }
 `;

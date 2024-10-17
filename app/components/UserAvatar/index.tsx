@@ -31,16 +31,16 @@ export default function UserAvatar({ data }: UserAvatarProps) {
   return (
     <Fragment>
       {image ? (
-        <div className="border-8 border-primary shadow-lg">
+        <div className="w-max mx-auto lg:mx-0 mb-10 lg:mb-0 border-8 border-primary shadow-lg">
           <Image
             src={image}
-            width={isDesktop ? 200 : 100}
-            height={isDesktop ? 200 : 100}
+            width={200}
+            height={200}
             alt={t("Profile.avatar.alt", { name })}
           />
         </div>
       ) : (
-        <CircleUser size={isDesktop ? 200 : 100} />
+        <CircleUser size={200} />
       )}
     </Fragment>
   );

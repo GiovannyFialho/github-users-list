@@ -57,9 +57,9 @@ export default function Profile({ goToProfile }: ProfileProps) {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button className="w-10 h-10 p-1 border-2 border-primary rounded-none bg-primary focus-visible:ring-0 hover:bg-primary-foreground">
-            {sessionData.user?.image ? (
+            {sessionData.user?.avatar_url ? (
               <Image
-                src={sessionData.user?.image}
+                src={sessionData.user?.avatar_url}
                 width={35}
                 height={35}
                 alt={`Imagem de perfil do ${sessionData.user?.name}`}
@@ -73,7 +73,7 @@ export default function Profile({ goToProfile }: ProfileProps) {
         <DropdownMenuContent className="w-auto mr-5 p-0 rounded-none bg-primary">
           <DropdownMenuLabel className="flex items-center">
             <p className="text-base text-background font-medium px-2 py-1 pt-2">
-              {t("Profile.control.hello", { name: sessionData.user?.name })}
+              {t("Profile.control.title", { name: sessionData.user?.name })}
             </p>
           </DropdownMenuLabel>
 
@@ -108,9 +108,9 @@ export default function Profile({ goToProfile }: ProfileProps) {
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>
           <Button className="w-12 h-12 p-1 border-2 border-primary rounded-none bg-primary focus-visible:ring-0 hover:bg-primary-foreground">
-            {sessionData.user?.image ? (
+            {sessionData.user?.avatar_url ? (
               <Image
-                src={sessionData.user?.image}
+                src={sessionData.user?.avatar_url}
                 width={35}
                 height={35}
                 alt={`Imagem de perfil do ${sessionData.user?.name}`}

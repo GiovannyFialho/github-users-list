@@ -31711,7 +31711,7 @@ export type GetUserQueryVariables = Exact<{
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null, email: string, avatarUrl: any, bio?: string | null, company?: string | null, login: string } | null };
+export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null, email: string, avatarUrl: any, bio?: string | null, company?: string | null, login: string, location?: string | null, createdAt: any, url: any, followers: { __typename?: 'FollowerConnection', totalCount: number }, following: { __typename?: 'FollowingConnection', totalCount: number }, socialAccounts: { __typename?: 'SocialAccountConnection', edges?: Array<{ __typename?: 'SocialAccountEdge', node?: { __typename?: 'SocialAccount', provider: SocialAccountProvider, displayName: string } | null } | null> | null } } | null };
 
 export type GetUsersQueryVariables = Exact<{
   query: Scalars['String']['input'];
@@ -31732,6 +31732,23 @@ export const GetUserDocument = gql`
     bio
     company
     login
+    location
+    createdAt
+    url
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    socialAccounts(first: 5) {
+      edges {
+        node {
+          provider
+          displayName
+        }
+      }
+    }
   }
 }
     `;
