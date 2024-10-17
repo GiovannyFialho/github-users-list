@@ -13,8 +13,9 @@ export default {
   nobody: "Nenhum usuário encontrado",
   biography: "Biografia",
   location: "Localização",
-  socialMedia: "Redes sociais",
   fullProfile: "Veja o perfil completo",
   followers: "{{ quantity }} seguidores",
-  following: "{{ quantity }} seguindo"
+  following: "{{ quantity }} seguindo",
+  repositories: "Repositórios",
+  socialMedia: "Redes sociais"
 };

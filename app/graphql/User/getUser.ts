@@ -19,11 +19,28 @@ const GET_USER = gql`
       following {
         totalCount
       }
-      socialAccounts(first: 5) {
+      socialAccounts(last: 5) {
         edges {
           node {
             provider
             displayName
+          }
+        }
+      }
+      repositories(last: 6) {
+        nodes {
+          id
+          name
+          description
+          url
+          issues {
+            totalCount
+          }
+          pullRequests {
+            totalCount
+          }
+          forks {
+            totalCount
           }
         }
       }

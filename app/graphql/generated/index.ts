@@ -31711,7 +31711,7 @@ export type GetUserQueryVariables = Exact<{
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null, email: string, avatarUrl: any, bio?: string | null, company?: string | null, login: string, location?: string | null, createdAt: any, url: any, followers: { __typename?: 'FollowerConnection', totalCount: number }, following: { __typename?: 'FollowingConnection', totalCount: number }, socialAccounts: { __typename?: 'SocialAccountConnection', edges?: Array<{ __typename?: 'SocialAccountEdge', node?: { __typename?: 'SocialAccount', provider: SocialAccountProvider, displayName: string } | null } | null> | null } } | null };
+export type GetUserQuery = { __typename?: 'Query', user?: { __typename?: 'User', id: string, name?: string | null, email: string, avatarUrl: any, bio?: string | null, company?: string | null, login: string, location?: string | null, createdAt: any, url: any, followers: { __typename?: 'FollowerConnection', totalCount: number }, following: { __typename?: 'FollowingConnection', totalCount: number }, socialAccounts: { __typename?: 'SocialAccountConnection', edges?: Array<{ __typename?: 'SocialAccountEdge', node?: { __typename?: 'SocialAccount', provider: SocialAccountProvider, displayName: string } | null } | null> | null }, repositories: { __typename?: 'RepositoryConnection', nodes?: Array<{ __typename?: 'Repository', id: string, name: string, description?: string | null, url: any, issues: { __typename?: 'IssueConnection', totalCount: number }, pullRequests: { __typename?: 'PullRequestConnection', totalCount: number }, forks: { __typename?: 'RepositoryConnection', totalCount: number } } | null> | null } } | null };
 
 export type GetUsersQueryVariables = Exact<{
   query: Scalars['String']['input'];
@@ -31741,11 +31741,28 @@ export const GetUserDocument = gql`
     following {
       totalCount
     }
-    socialAccounts(first: 5) {
+    socialAccounts(last: 5) {
       edges {
         node {
           provider
           displayName
+        }
+      }
+    }
+    repositories(last: 6) {
+      nodes {
+        id
+        name
+        description
+        url
+        issues {
+          totalCount
+        }
+        pullRequests {
+          totalCount
+        }
+        forks {
+          totalCount
         }
       }
     }
