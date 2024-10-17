@@ -2,15 +2,10 @@
 
 import { Building, Mail, User } from "lucide-react";
 
-type Props = {
-  name?: string | null | undefined;
-  login: string | undefined;
-  email?: string;
-  company?: string;
-};
+import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
 
 interface UserHeaderDescriptionProps {
-  data?: Props;
+  data?: Partial<GitHubProfile>;
 }
 
 export default function UserHeaderDescription({

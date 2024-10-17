@@ -3,6 +3,7 @@
 import { CircleUser } from "lucide-react";
 import { useTranslation } from "next-i18next";
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import { toast } from "sonner";
@@ -12,7 +13,6 @@ import SearchUser from "@/app/components/SearchUser";
 import { useGetUsersLazyQuery } from "@/app/graphql/generated";
 
 import tailwindConfig from "@/tailwind.config";
-import Link from "next/link";
 
 export default function HomeComponent() {
   const { t } = useTranslation();

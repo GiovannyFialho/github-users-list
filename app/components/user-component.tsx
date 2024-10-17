@@ -37,22 +37,20 @@ export default function UserComponent() {
 
   return (
     <div className="w-full lg:min-h-[calc(100vh-144px)] flex justify-center my-10">
-      <div className="max-w-5xl w-full flex flex-col gap-3 px-5">
-        <div className="flex flex-col lg:flex-row lg:items-center gap-5 pb-5 mb-5 border-b">
-          {loadingUser ? (
-            <RotatingLines
-              width="50"
-              strokeColor={
-                tailwindConfig.theme?.extend?.colors?.primary.DEFAULT
-              }
-            />
-          ) : user?.user && Object.keys(user.user).length > 0 ? (
-            <UserDetailComponent data={user.user} />
-          ) : (
-            <p>não tem nada</p>
-          )}
+      {loadingUser ? (
+        <div className="w-full flex justify-center items-center">
+          <RotatingLines
+            width="50"
+            strokeColor={tailwindConfig.theme?.extend?.colors?.primary.DEFAULT}
+          />
         </div>
-      </div>
+      ) : user?.user && Object.keys(user.user).length > 0 ? (
+        <div className="max-w-5xl w-full flex flex-col gap-3 px-5">
+          <UserDetailComponent data={user.user} />
+        </div>
+      ) : (
+        <p className="text-lg text-center">{t("Profile.nobody")}</p>
+      )}
     </div>
   );
 }

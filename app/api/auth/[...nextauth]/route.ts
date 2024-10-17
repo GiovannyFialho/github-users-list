@@ -1,6 +1,8 @@
-import { type GitHubProfile } from "@/app/types/next-auth";
+import { Endpoints } from "@octokit/types";
 import NextAuth from "next-auth";
 import GitHubProvider from "next-auth/providers/github";
+
+export type GitHubProfile = Endpoints["GET /user"]["response"]["data"];
 
 const handler = NextAuth({
   providers: [
@@ -14,17 +16,13 @@ const handler = NextAuth({
       if (profile) {
         const githubProfile = profile as GitHubProfile;
 
-        token.id = githubProfile.id as string;
-        token.login = githubProfile.login as string;
-        token.company = githubProfile.company as string;
+        Object.assign(token, githubProfile);
       }
 
       return token;
     },
     async session({ session, token }) {
-      session.user.id = token.id as string;
-      session.user.login = token.login as string;
-      session.user.company = token.comapany as string;
+      Object.assign(session.user, token);
 
       return session;
     }

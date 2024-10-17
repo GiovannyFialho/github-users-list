@@ -7,14 +7,10 @@ import { useTranslation } from "react-i18next";
 
 import { useMediaQuery } from "@/app/hooks/use-media-query";
 
-type Props = {
-  name?: string | null | undefined;
-  image?: string;
-  avatarUrl?: string;
-};
+import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
 
 interface UserAvatarProps {
-  data?: Props;
+  data?: Partial<GitHubProfile>;
 }
 
 export default function UserAvatar({ data }: UserAvatarProps) {
@@ -27,7 +23,10 @@ export default function UserAvatar({ data }: UserAvatarProps) {
   }
 
   const { name } = data;
-  const image = data.image || data.avatarUrl;
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
+  const image = data.avatar_url || data?.avatarUrl;
 
   return (
     <Fragment>

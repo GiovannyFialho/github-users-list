@@ -1,15 +1,15 @@
 "use client";
 
-import UserAvatar from "@/app/components/UserAvatar";
-import UserHeaderDescription from "@/app/components/UserHeaderDescription";
-
-import { GetUserQuery } from "@/app/graphql/generated";
 import { Fragment } from "react";
 
-type UserProps = NonNullable<GetUserQuery["user"]>;
+import UserAvatar from "@/app/components/UserAvatar";
+import UserBodyDescription from "@/app/components/UserBodyDescription";
+import UserHeaderDescription from "@/app/components/UserHeaderDescription";
+
+import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
 
 interface UserDetailComponentProps {
-  data: UserProps;
+  data: Partial<GitHubProfile>;
 }
 
 export default function UserDetailComponent({
@@ -17,9 +17,13 @@ export default function UserDetailComponent({
 }: UserDetailComponentProps) {
   return (
     <Fragment>
-      <UserAvatar data={data} />
+      <div className="flex flex-col lg:flex-row lg:items-center gap-5 pb-5 mb-5 border-b">
+        <UserAvatar data={data} />
 
-      <UserHeaderDescription data={data} />
+        <UserHeaderDescription data={data} />
+      </div>
+
+      <UserBodyDescription data={data} />
     </Fragment>
   );
 }

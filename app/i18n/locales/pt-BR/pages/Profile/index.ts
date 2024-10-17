@@ -9,5 +9,7 @@ export default {
   },
   avatar: {
     alt: "Imagem de perfil do {{ name }}"
-  }
+  },
+  nobody: "Nenhum usuário encontrado",
+  biography: "Biografia"
 };
