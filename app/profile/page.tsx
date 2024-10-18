@@ -5,6 +5,7 @@ import ProfileComponent from "@/app/components/profile-component";
 
 import { type SupportedLanguages } from "@/app/i18n";
 import locales from "@/app/i18n/locales";
+import thumb from "@/app/images/thumb.png";
 
 export const generateMetadata = (): Metadata => {
   const lang =
@@ -12,7 +13,10 @@ export const generateMetadata = (): Metadata => {
 
   return {
     title: locales[lang]?.translations?.Profile?.head?.title || "",
-    description: locales[lang]?.translations?.Shared?.head?.description || ""
+    description: locales[lang]?.translations?.Shared?.head?.description || "",
+    openGraph: {
+      url: thumb.src
+    }
   };
 };
 
