@@ -11,7 +11,13 @@ const config: CodegenConfig = {
         "typescript",
         "typescript-operations",
         "typescript-react-apollo"
-      ]
+      ],
+      config: {
+        avoidOptionals: true,
+        scalars: {
+          ID: "string"
+        }
+      }
     }
   }
 };

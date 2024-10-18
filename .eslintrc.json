@@ -2,5 +2,19 @@
   "extends": ["next/core-web-vitals", "next/typescript"],
   "rules": {
     "import/no-anonymous-default-export": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["app/components/ui/**/*.ts", "app/components/ui/**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-empty-object-type": "off"
+      }
+    },
+    {
+      "files": ["app/graphql/generated/**/*.ts", "app/graphql/generated/**/*.tsx"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
 }

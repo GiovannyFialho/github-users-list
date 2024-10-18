@@ -35,7 +35,9 @@ export default function UserComponent() {
   useEffect(() => {
     if (typeof params.name === "string") {
       getUser({ variables: { login: params.name } }).then((result) => {
-        setUserProfile(result.data?.user);
+        if (result?.data?.user) {
+          setUserProfile(result.data.user);
+        }
       });
     }
   }, [getUser, params, setUserProfile]);
