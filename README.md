@@ -18,7 +18,7 @@ After that, click on the "Generate new token" button and choose the "Generate ne
 ### Libraries
 
 #### Authentication
-- Authentication library: [NextAuth](https://next-auth.js.org/)
+- [NextAuth](https://next-auth.js.org/)
 
 #### Internationalization
 - [React i18next](https://react.i18next.com/)
