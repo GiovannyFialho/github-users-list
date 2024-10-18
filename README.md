@@ -15,10 +15,10 @@ Settings > Developer Settings > Personal acess tokens > tokens (classic)
 ```
 After that, click on the "Generate new token" button and choose the "Generate new token (classic)" option. And select all permissions that you need.
 
-### Authentication
-- Authentication library: [NextAuth](https://next-auth.js.org/)
-
 ### Libraries
+
+#### Authentication
+- Authentication library: [NextAuth](https://next-auth.js.org/)
 
 #### Internationalization
 - [React i18next](https://react.i18next.com/)
