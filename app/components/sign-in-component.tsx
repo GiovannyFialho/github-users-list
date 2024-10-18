@@ -44,7 +44,7 @@ export default function SignInComponent() {
 
         <Button
           type="button"
-          className="w-full md:w-max h-14 flex gap-4 text-lg text-background px-5 py-3 mb-3 rounded-none transition-all duration-300 hover:bg-primary-foreground"
+          className="w-full md:w-max h-14 flex gap-4 text-lg text-background px-5 py-3 mb-16 lg:mb-3 rounded-none transition-all duration-300 hover:bg-primary-foreground"
           onClick={handleSignIn}
         >
           <LogIn className="text-background" />

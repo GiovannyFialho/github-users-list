@@ -30,7 +30,7 @@ export default function SearchUser({ search }: SearchUserProps) {
       <div className="flex items-center gap-4 p-0 border-4 border-primary">
         <div
           className={`
-            p-3 transition-all duration-300
+            p-1.5 md:p-3 transition-all duration-300
             ${inputFocus ? "bg-primary-foreground" : "bg-primary"}
           `}
         >

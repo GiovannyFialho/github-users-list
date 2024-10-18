@@ -130,7 +130,7 @@ export default function Header() {
                   {t("Home.itemMenu")}
                 </Button>
 
-                <div className="flex items-center flex-wrap gap-2">
+                <div className="flex items-center flex-wrap gap-2 mb-16">
                   <ChangeLang />
                   <ChangeTheme />
                   <Profile goToProfile={(value) => setHasCloseProfile(value)} />

@@ -45,7 +45,7 @@ export default function HomeComponent() {
   return (
     <div className="w-full lg:min-h-[calc(100vh-104px)] flex flex-col lg:items-center lg:justify-center gap-10 my-10 md:mt-0">
       <div className="max-w-5xl w-full flex flex-col gap-3 px-5">
-        <h1 className="text-5xl md:text-7xl lg:text-9xl font-bold text-center text-primary mb-5">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold text-center text-primary mb-5">
           {t("Home.title")}
           <span className="font-light">Github</span>
         </h1>
