@@ -8,6 +8,8 @@ import { toast } from "sonner";
 
 import UserDetailComponent from "@/app/components/user-detail-component";
 
+import { useUserProfile } from "@/app/context/UserProfileContext";
+
 import { useGetUserLazyQuery } from "@/app/graphql/generated";
 
 import tailwindConfig from "@/tailwind.config";
@@ -15,6 +17,7 @@ import tailwindConfig from "@/tailwind.config";
 export default function UserComponent() {
   const { t } = useTranslation();
   const params = useParams();
+  const { setUserProfile } = useUserProfile();
 
   const [getUser, { data: user, loading: loadingUser, error: errorUser }] =
     useGetUserLazyQuery();
@@ -31,9 +34,11 @@ export default function UserComponent() {
 
   useEffect(() => {
     if (typeof params.name === "string") {
-      getUser({ variables: { login: params.name } });
+      getUser({ variables: { login: params.name } }).then((result) => {
+        setUserProfile(result.data?.user);
+      });
     }
-  }, [getUser, params]);
+  }, [getUser, params, setUserProfile]);
 
   return (
     <div className="w-full lg:min-h-[calc(100vh-144px)] flex justify-center my-10">
@@ -46,7 +51,7 @@ export default function UserComponent() {
         </div>
       ) : user?.user && Object.keys(user.user).length > 0 ? (
         <div className="max-w-5xl w-full flex flex-col gap-3 px-5">
-          <UserDetailComponent data={user.user} />
+          <UserDetailComponent />
         </div>
       ) : (
         <p className="text-lg text-center">{t("Profile.nobody")}</p>

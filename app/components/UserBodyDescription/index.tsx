@@ -4,22 +4,17 @@ import { CircleDot, GitFork, GitPullRequestArrow, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
-import { type GetUserQuery } from "@/app/graphql/generated";
+import { useUserProfile } from "@/app/context/UserProfileContext";
 
-interface UserBodyDescriptionProps {
-  data?: Partial<GetUserQuery["user"]>;
-}
-
-export default function UserBodyDescription({
-  data
-}: UserBodyDescriptionProps) {
+export default function UserBodyDescription() {
   const { t } = useTranslation();
+  const { userProfile } = useUserProfile();
 
-  if (!data) {
+  if (!userProfile) {
     return null;
   }
 
-  const { bio, location, repositories, socialAccounts, url } = data;
+  const { bio, location, repositories, socialAccounts, url } = userProfile;
 
   return (
     <div className="flex flex-col gap-5">

@@ -6,6 +6,8 @@ import { useEffect, useState, type ReactNode } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
 import { RotatingLines } from "react-loader-spinner";
 
+import { UserProfileProvider } from "@/app/context/UserProfileContext";
+
 import i18next from "@/app/i18n";
 import { client } from "@/app/lib/client";
 
@@ -37,7 +39,9 @@ export function Providers({ children }: { children: ReactNode }) {
   return (
     <ApolloProvider client={client}>
       <SessionProvider>
-        <I18nextProvider i18n={i18next}>{children}</I18nextProvider>
+        <I18nextProvider i18n={i18next}>
+          <UserProfileProvider>{children}</UserProfileProvider>
+        </I18nextProvider>
       </SessionProvider>
     </ApolloProvider>
   );

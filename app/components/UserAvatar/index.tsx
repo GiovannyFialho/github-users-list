@@ -5,28 +5,29 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 
-import { type UserProfile } from "@/app/components/user-detail-component";
-
 import { useMediaQuery } from "@/app/hooks/use-media-query";
 
+import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
+import { type GetUserQuery } from "@/app/graphql/generated";
+
 interface UserAvatarProps {
-  data?: UserProfile;
+  user: Partial<GitHubProfile> | Partial<GetUserQuery["user"]>;
 }
 
-export default function UserAvatar({ data }: UserAvatarProps) {
+export default function UserAvatar({ user }: UserAvatarProps) {
   const { t } = useTranslation();
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
 
-  if (!data) {
+  if (!user) {
     return <CircleUser size={isDesktop ? 200 : 100} />;
   }
 
-  const { name } = data;
+  const { name } = user;
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   //@ts-expect-error
-  const image = data.avatar_url || data?.avatarUrl;
+  const image = user.avatar_url || user?.avatarUrl;
 
   return (
     <Fragment>
