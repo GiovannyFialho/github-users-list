@@ -16,7 +16,7 @@ export default function UserDetailComponent() {
       <div className="flex flex-col lg:flex-row lg:items-center gap-5 pb-5 mb-5 border-b">
         <UserAvatar user={userProfile} />
 
-        <UserHeaderDescription />
+        <UserHeaderDescription user={userProfile} />
       </div>
 
       <UserBodyDescription />

@@ -4,22 +4,40 @@ import { Building, CalendarDays, Mail, User, Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { RxDividerVertical } from "react-icons/rx";
 
-import { useUserProfile } from "@/app/context/UserProfileContext";
+import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
+import { type GetUserQuery } from "@/app/graphql/generated";
 
-export default function UserHeaderDescription() {
+interface UserHeaderDescriptionProps {
+  user?: Partial<GitHubProfile> | Partial<GetUserQuery["user"]>;
+}
+
+export default function UserHeaderDescription({
+  user
+}: UserHeaderDescriptionProps) {
   const { t, i18n } = useTranslation();
-  const { userProfile } = useUserProfile();
 
-  if (!userProfile) {
+  if (!user) {
     return null;
   }
 
-  const { name, login, email, company, followers, following } = userProfile;
+  const { name, login, email, company } = user;
 
-  const cleanDate = new Date(userProfile.createdAt)
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
+  const cleanDate = new Date(user?.created_at || user?.createdAt)
     .toLocaleDateString(i18n.language, { year: "numeric", month: "short" })
     .replace(/^\w+/, (month) => month.charAt(0).toUpperCase() + month.slice(1))
     .replace(".", "");
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
+  const followers = user?.followers?.totalCount || user?.followers;
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  //@ts-expect-error
+  const following = user?.following?.totalCount || user?.following;
+
+  console.log({ followers, following });
 
   return (
     <div className="flex flex-col gap-2">
@@ -33,9 +51,7 @@ export default function UserHeaderDescription() {
         </div>
       )}
 
-      <h2 className="text-5xl lg:text-7xl font-bold text-primary">
-        {name?.split(" ").slice(0, 2).join(" ")}
-      </h2>
+      <h2 className="text-5xl lg:text-7xl font-bold text-primary">{name}</h2>
 
       <div className="flex items-center gap-2">
         <User size={15} />
@@ -67,7 +83,7 @@ export default function UserHeaderDescription() {
         {followers && (
           <div className="flex items-center gap-2">
             <p className="text-base font-light">
-              {t("Profile.followers", { quantity: followers.totalCount })}
+              {t("Profile.followers", { quantity: followers })}
             </p>
           </div>
         )}
@@ -77,7 +93,7 @@ export default function UserHeaderDescription() {
         {following && (
           <div className="flex items-center gap-2">
             <p className="text-base font-light">
-              {t("Profile.following", { quantity: following.totalCount })}
+              {t("Profile.following", { quantity: following })}
             </p>
           </div>
         )}

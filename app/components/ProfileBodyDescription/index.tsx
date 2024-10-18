@@ -4,20 +4,14 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { FaGithub } from "react-icons/fa6";
 
-import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
-
 import { formatBytes } from "@/app/utils/formatBytes";
+import { useSession } from "next-auth/react";
 
-interface ProfileBodyDescriptionProps {
-  data?: Partial<GitHubProfile>;
-}
-
-export default function ProfileBodyDescription({
-  data
-}: ProfileBodyDescriptionProps) {
+export default function ProfileBodyDescription() {
   const { t } = useTranslation();
+  const { data: sessionData } = useSession();
 
-  if (!data) {
+  if (!sessionData?.user) {
     return null;
   }
 
@@ -30,7 +24,7 @@ export default function ProfileBodyDescription({
     gists_url,
     public_gists,
     private_gists
-  } = data;
+  } = sessionData.user;
 
   return (
     <div className="flex flex-col gap-5">

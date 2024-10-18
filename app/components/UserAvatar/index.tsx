@@ -11,7 +11,7 @@ import { type GitHubProfile } from "@/app/api/auth/[...nextauth]/route";
 import { type GetUserQuery } from "@/app/graphql/generated";
 
 interface UserAvatarProps {
-  user: Partial<GitHubProfile> | Partial<GetUserQuery["user"]>;
+  user?: Partial<GitHubProfile> | Partial<GetUserQuery["user"]>;
 }
 
 export default function UserAvatar({ user }: UserAvatarProps) {
