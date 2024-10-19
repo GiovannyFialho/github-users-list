@@ -1,6 +1,7 @@
 "use client";
 
 import { ApolloProvider } from "@apollo/client";
+import Cookies from "js-cookie"; // Importar js-cookie para manipular cookies
 import { SessionProvider } from "next-auth/react";
 import { useEffect, useState, type ReactNode } from "react";
 import { I18nextProvider, useTranslation } from "react-i18next";
@@ -22,8 +23,18 @@ export function Providers({ children }: { children: ReactNode }) {
       await i18n.init();
       setIsReady(true);
     };
+
     initializeI18n();
   }, [i18n]);
+
+  useEffect(() => {
+    const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+      .matches
+      ? "dark"
+      : "light";
+
+    Cookies.set("theme", systemTheme, { expires: 365, sameSite: "strict" });
+  }, []);
 
   if (!isReady) {
     return (

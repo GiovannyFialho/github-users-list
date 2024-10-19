@@ -32,8 +32,8 @@ export default function SignInComponent() {
   }
 
   return (
-    <div className="w-full min-h-[calc(100vh-64px)] flex justify-center">
-      <div className="max-w-5xl w-full flex flex-col items-center justify-between md:justify-normal gap-3 px-5 mt-5 md:mt-24">
+    <div className="w-full min-h-[calc(100vh-128px)] flex justify-center">
+      <div className="max-w-5xl w-full flex flex-col items-center justify-between md:justify-start gap-3 px-5 mt-5 md:mt-24">
         <div className="flex flex-col items-center gap-2 mb-5">
           <h1 className="text-4xl md:text-7xl text-primary font-black text-center">
             {t("SignIn.title")}
@@ -44,7 +44,7 @@ export default function SignInComponent() {
 
         <Button
           type="button"
-          className="w-full md:w-max h-14 flex gap-4 text-lg text-background px-5 py-3 mb-16 lg:mb-3 rounded-none transition-all duration-300 hover:bg-primary-foreground"
+          className="w-full md:w-max h-14 flex gap-4 text-lg text-background px-5 py-3 lg:mb-3 rounded-none transition-all duration-300 hover:bg-primary-foreground"
           onClick={handleSignIn}
         >
           <LogIn className="text-background" />
