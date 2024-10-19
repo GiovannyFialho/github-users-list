@@ -32,7 +32,7 @@ export default function SignInComponent() {
   }
 
   return (
-    <div className="w-full min-h-[calc(100vh-128px)] flex justify-center">
+    <div className="w-full min-h-[calc(100vh-150px)] flex justify-center">
       <div className="max-w-5xl w-full flex flex-col items-center justify-between md:justify-start gap-3 px-5 mt-5 md:mt-24">
         <div className="flex flex-col items-center gap-2 mb-5">
           <h1 className="text-4xl md:text-7xl text-primary font-black text-center">
