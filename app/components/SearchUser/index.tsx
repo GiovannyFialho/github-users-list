@@ -18,6 +18,7 @@ export default function SearchUser({ search }: SearchUserProps) {
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter") {
       handleSearchUser();
+      (event.target as HTMLInputElement).blur();
     }
   }
 

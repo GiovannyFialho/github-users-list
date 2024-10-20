@@ -64,9 +64,11 @@ export default function HomeComponent() {
             {users?.search.edges?.length === 0 ? (
               <Fragment>
                 {initialState === false && (
-                  <p className="text-lg text-center">
-                    {t("Home.requests.searchUsers.nobody")}
-                  </p>
+                  <div className="w-full px-5">
+                    <p className="text-lg text-center">
+                      {t("Home.requests.searchUsers.nobody")}
+                    </p>
+                  </div>
                 )}
               </Fragment>
             ) : (

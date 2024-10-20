@@ -127,7 +127,7 @@ export default function UserBodyDescription() {
               <a
                 href={gist?.url}
                 key={gist?.id}
-                className="w-full h-40 flex flex-col justify-between gap-5 px-3 py-2 overflow-auto bg-primary"
+                className="w-full h-40 flex flex-col justify-between gap-5 px-3 py-2 overflow-y-auto bg-primary"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -139,7 +139,7 @@ export default function UserBodyDescription() {
                   {gist?.files?.map((file, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between"
+                      className="flex items-center justify-between flex-wrap gap-2"
                     >
                       <p className="text-lg font-normal text-background">
                         {file?.name}
