@@ -17,6 +17,7 @@ import tailwindConfig from "@/tailwind.config";
 export function Providers({ children }: { children: ReactNode }) {
   const { i18n } = useTranslation();
   const [isReady, setIsReady] = useState(false);
+  const [currentTheme, setCurrentTheme] = useState("");
 
   useEffect(() => {
     const initializeI18n = async () => {
@@ -32,6 +33,8 @@ export function Providers({ children }: { children: ReactNode }) {
       .matches
       ? "dark"
       : "light";
+
+    setCurrentTheme(systemTheme);
 
     Cookies.set("theme", systemTheme, { expires: 365, sameSite: "strict" });
   }, []);
@@ -51,7 +54,10 @@ export function Providers({ children }: { children: ReactNode }) {
     <ApolloProvider client={client}>
       <SessionProvider>
         <I18nextProvider i18n={i18next}>
-          <UserProfileProvider>{children}</UserProfileProvider>
+          <UserProfileProvider>
+            <p>currentTheme: {currentTheme}</p>
+            {children}
+          </UserProfileProvider>
         </I18nextProvider>
       </SessionProvider>
     </ApolloProvider>

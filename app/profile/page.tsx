@@ -11,11 +11,15 @@ export const generateMetadata = (): Metadata => {
   const lang =
     (cookies().get("i18next")?.value as SupportedLanguages) || "pt-BR";
 
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+
   return {
-    title: locales[lang]?.translations?.Profile?.head?.title || "",
+    title: locales[lang]?.translations?.Home?.head?.title || "",
     description: locales[lang]?.translations?.Shared?.head?.description || "",
     openGraph: {
-      url: thumb.src
+      images: [`${baseUrl}${thumb.src}`],
+      type: "website",
+      url: `${baseUrl}`
     }
   };
 };
