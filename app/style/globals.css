@@ -66,5 +66,22 @@
 
   body {
     @apply bg-background text-foreground;
+
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-primary-foreground;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-background;
+    @apply rounded-2xl;
+    @apply border;
+    @apply border-solid;
+    @apply border-primary-foreground;
   }
 }

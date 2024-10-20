@@ -1,6 +1,13 @@
 "use client";
 
-import { CircleDot, GitFork, GitPullRequestArrow, MapPin } from "lucide-react";
+import {
+  CircleDot,
+  Dot,
+  GitFork,
+  GitPullRequestArrow,
+  MapPin,
+  Star
+} from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
@@ -14,12 +21,13 @@ export default function UserBodyDescription() {
     return null;
   }
 
-  const { bio, location, repositories, socialAccounts, url } = userProfile;
+  const { bio, location, repositories, socialAccounts, url, gists } =
+    userProfile;
 
   return (
     <div className="flex flex-col gap-5">
       {bio?.trim() !== "" && (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4 lg:gap-3">
           <h2 className="text-3xl font-bold text-primary">
             {t("Profile.biography")}
           </h2>
@@ -29,7 +37,7 @@ export default function UserBodyDescription() {
       )}
 
       {location !== "" && (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4 lg:gap-3">
           <h2 className="text-3xl font-bold text-primary">
             {t("Profile.location")}
           </h2>
@@ -43,12 +51,12 @@ export default function UserBodyDescription() {
       )}
 
       {repositories?.nodes && (
-        <div>
-          <h2 className="text-3xl font-bold text-primary mb-3">
+        <div className="flex flex-col gap-4 lg:gap-3">
+          <h2 className="text-3xl font-bold text-primary">
             {t("Profile.repositories")}
           </h2>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-5">
             {repositories?.nodes?.map((repository) => (
               <a
                 href={repository?.url}
@@ -110,8 +118,69 @@ export default function UserBodyDescription() {
         </div>
       )}
 
+      {gists?.nodes && (
+        <div className="flex flex-col gap-4 lg:gap-3">
+          <h2 className="text-3xl font-bold text-primary">Gists</h2>
+
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-5">
+            {gists?.nodes?.map((gist) => (
+              <a
+                href={gist?.url}
+                key={gist?.id}
+                className="w-full h-40 flex flex-col justify-between gap-5 px-3 py-2 overflow-auto bg-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h3 className="max-h-[3rem] text-lg font-bold text-background">
+                  {gist?.description}
+                </h3>
+
+                <div className="flex flex-col">
+                  {gist?.files?.map((file, index) => (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between"
+                    >
+                      <p className="text-lg font-normal text-background">
+                        {file?.name}
+                      </p>
+
+                      <div className="flex items-center gap-1">
+                        <div className="flex items-center gap-1">
+                          <p className="flex items-center gap-1 text-sm text-background font-light">
+                            <GitFork size={15} className="text-background" />
+                            Forks
+                          </p>
+
+                          <p className="text-sm font-bold text-background">
+                            {gist.forks.totalCount}
+                          </p>
+                        </div>
+
+                        <Dot className="text-background" />
+
+                        <div className="flex items-center gap-1">
+                          <p className="flex items-center gap-1 text-sm text-background font-light">
+                            <Star size={15} className="text-background" />
+                            Stars
+                          </p>
+
+                          <p className="text-sm font-bold text-background">
+                            {gist.stargazers.totalCount}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
       {socialAccounts?.edges && (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4 lg:gap-3">
           <h2 className="text-3xl font-bold text-primary">
             {t("Profile.socialMedia")}
           </h2>

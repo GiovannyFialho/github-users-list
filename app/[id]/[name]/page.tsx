@@ -29,8 +29,6 @@ export const generateMetadata = ({ params }: UserPageProps): Metadata => {
   };
 };
 
-export default function UserPage({ params }: UserPageProps) {
-  console.log(`${params.name}'s user page`);
-
+export default function UserPage() {
   return <UserComponent />;
 }

@@ -43,7 +43,7 @@ export default function UserComponent() {
   }, [getUser, params, setUserProfile]);
 
   return (
-    <div className="w-full lg:min-h-[calc(100vh-144px)] flex justify-center my-10">
+    <div className="w-full min-h-[calc(100vh-144px)] flex justify-center my-10">
       {loadingUser ? (
         <div className="w-full flex justify-center items-center">
           <RotatingLines
@@ -56,7 +56,9 @@ export default function UserComponent() {
           <UserDetailComponent />
         </div>
       ) : (
-        <p className="text-lg text-center">{t("Profile.nobody")}</p>
+        <div className="w-full flex justify-center items-center">
+          <p className="text-lg text-center">{t("Profile.nobody")}</p>
+        </div>
       )}
     </div>
   );

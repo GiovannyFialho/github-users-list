@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 
 import ChangeLang from "@/app/components/ChangeLang";
 import ChangeTheme from "@/app/components/ChangeTheme";
+import Logo from "@/app/components/Logo";
 import Profile from "@/app/components/Profile";
 import { Button } from "@/app/components/ui/button";
 import {
@@ -74,7 +75,7 @@ export default function Header() {
               <Link
                 href="/"
                 className={`
-                  w-max text-lg font-medium py-0 px-2 transition-all duration-200
+                  w-max text-lg font-medium py-0 px-2 outline-none transition-all duration-200
                   relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-primary after:w-full
                   after:origin-left after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100
                   ${pathname === "/" ? "after:scale-x-100" : ""}
@@ -121,7 +122,7 @@ export default function Header() {
                   variant="link"
                   onClick={handleGoToHome}
                   className={`
-                    w-max text-lg font-medium mt-10 py-0 px-2 border-b hover:no-underline hover:border-primary
+                    w-max text-lg font-medium mt-10 py-0 px-2 border-b outline-none hover:no-underline hover:border-primary
                     ${
                       pathname === "/" ? "border-primary" : "border-transparent"
                     }
@@ -139,10 +140,9 @@ export default function Header() {
             </SheetContent>
           </Sheet>
 
-          <p className="text-lg font-bold text-center text-primary">
-            {t("Home.title")}
-            <span className="font-light">Github</span>
-          </p>
+          <Link href="/" className="text-lg font-bold text-center text-primary">
+            <Logo />
+          </Link>
         </div>
       )}
     </header>

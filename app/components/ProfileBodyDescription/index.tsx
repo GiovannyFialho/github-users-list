@@ -15,16 +15,8 @@ export default function ProfileBodyDescription() {
     return null;
   }
 
-  const {
-    html_url,
-    plan,
-    node_id,
-    login,
-    id,
-    gists_url,
-    public_gists,
-    private_gists
-  } = sessionData.user;
+  const { html_url, plan, node_id, login, id, public_gists, private_gists } =
+    sessionData.user;
 
   return (
     <div className="flex flex-col gap-5">
@@ -73,7 +65,7 @@ export default function ProfileBodyDescription() {
             </div>
           )}
 
-          {gists_url ? (
+          {private_gists || public_gists ? (
             <div className="flex flex-col gap-2 pt-2 border-t">
               <h3 className="text-2xl font-bold text-primary">Gists:</h3>
 
@@ -86,7 +78,7 @@ export default function ProfileBodyDescription() {
               </p>
 
               <a
-                href={gists_url}
+                href={`https://gist.github.com/${login}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-max flex items-center gap-2 text-lg font-medium text-background px-3 py-1 mt-5 shadow-lg bg-primary transition-all duration-300 hover:shadow"

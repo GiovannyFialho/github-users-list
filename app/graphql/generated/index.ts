@@ -31711,7 +31711,7 @@ export type GetUserQueryVariables = Exact<{
 }>;
 
 
-export type GetUserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, name: string | null, email: string, avatarUrl: any, bio: string | null, company: string | null, login: string, location: string | null, createdAt: any, url: any, followers: { __typename?: 'FollowerConnection', totalCount: number }, following: { __typename?: 'FollowingConnection', totalCount: number }, socialAccounts: { __typename?: 'SocialAccountConnection', edges: Array<{ __typename?: 'SocialAccountEdge', node: { __typename?: 'SocialAccount', provider: SocialAccountProvider, displayName: string } | null } | null> | null }, repositories: { __typename?: 'RepositoryConnection', nodes: Array<{ __typename?: 'Repository', id: string, name: string, description: string | null, url: any, issues: { __typename?: 'IssueConnection', totalCount: number }, pullRequests: { __typename?: 'PullRequestConnection', totalCount: number }, forks: { __typename?: 'RepositoryConnection', totalCount: number } } | null> | null } } | null };
+export type GetUserQuery = { __typename?: 'Query', user: { __typename?: 'User', id: string, name: string | null, email: string, avatarUrl: any, bio: string | null, company: string | null, login: string, location: string | null, createdAt: any, url: any, followers: { __typename?: 'FollowerConnection', totalCount: number }, following: { __typename?: 'FollowingConnection', totalCount: number }, socialAccounts: { __typename?: 'SocialAccountConnection', edges: Array<{ __typename?: 'SocialAccountEdge', node: { __typename?: 'SocialAccount', provider: SocialAccountProvider, displayName: string } | null } | null> | null }, repositories: { __typename?: 'RepositoryConnection', nodes: Array<{ __typename?: 'Repository', id: string, name: string, description: string | null, url: any, issues: { __typename?: 'IssueConnection', totalCount: number }, pullRequests: { __typename?: 'PullRequestConnection', totalCount: number }, forks: { __typename?: 'RepositoryConnection', totalCount: number } } | null> | null }, gists: { __typename?: 'GistConnection', nodes: Array<{ __typename?: 'Gist', id: string, isPublic: boolean, createdAt: any, description: string | null, name: string, url: any, files: Array<{ __typename?: 'GistFile', name: string | null } | null> | null, forks: { __typename?: 'GistConnection', totalCount: number }, stargazers: { __typename?: 'StargazerConnection', totalCount: number } } | null> | null } } | null };
 
 export type GetUsersQueryVariables = Exact<{
   query: Scalars['String']['input'];
@@ -31762,6 +31762,25 @@ export const GetUserDocument = gql`
           totalCount
         }
         forks {
+          totalCount
+        }
+      }
+    }
+    gists(last: 5) {
+      nodes {
+        id
+        isPublic
+        createdAt
+        description
+        name
+        url
+        files {
+          name
+        }
+        forks {
+          totalCount
+        }
+        stargazers {
           totalCount
         }
       }

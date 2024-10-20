@@ -44,6 +44,25 @@ const GET_USER = gql`
           }
         }
       }
+      gists(last: 5) {
+        nodes {
+          id
+          isPublic
+          createdAt
+          description
+          name
+          url
+          files {
+            name
+          }
+          forks {
+            totalCount
+          }
+          stargazers {
+            totalCount
+          }
+        }
+      }
     }
   }
 `;

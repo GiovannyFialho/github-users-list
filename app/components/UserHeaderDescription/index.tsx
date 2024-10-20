@@ -37,8 +37,6 @@ export default function UserHeaderDescription({
   //@ts-expect-error
   const following = user?.following?.totalCount || user?.following;
 
-  console.log({ followers, following });
-
   return (
     <div className="flex flex-col gap-2">
       {cleanDate !== "" && (
