@@ -21,16 +21,15 @@ export default function RootLayout({
   const headersList = headers();
 
   const preferTheme = headersList.get("sec-ch-prefers-color-scheme") || "";
-
   const cookieThemeMatch = headersList.get("cookie")?.match(/theme=([^;]*)/);
   const cookieTheme = cookieThemeMatch ? cookieThemeMatch[1] : "";
 
   const theme = cookieTheme || (preferTheme === "dark" ? "dark" : "light");
 
   return (
-    <html className={theme}>
+    <html>
       <body className={roboto.className}>
-        <Providers>
+        <Providers initialTheme={theme}>
           <Header />
           <main>{children}</main>
           <Toaster />

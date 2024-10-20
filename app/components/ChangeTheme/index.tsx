@@ -1,45 +1,15 @@
 "use client";
 
-import Cookies from "js-cookie";
 import { SunMoon } from "lucide-react";
-import { useEffect, useState } from "react";
+
+import { useTheme } from "@/app/context/ThemeContext";
 
 export default function ChangeTheme() {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
+  const { currentTheme, setTheme } = useTheme();
 
   function handleChangeTheme() {
-    const newTheme = theme === "light" ? "dark" : "light";
-
-    setTheme(newTheme);
-
-    Cookies.set("theme", newTheme, {
-      path: "/",
-      sameSite: "strict",
-      expires: 365
-    });
-
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    setTheme(currentTheme === "dark" ? "light" : "dark");
   }
-
-  useEffect(() => {
-    const savedTheme = Cookies.get("theme");
-
-    if (savedTheme) {
-      setTheme(savedTheme as "light" | "dark");
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    } else {
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-
-      setTheme(prefersDark ? "dark" : "light");
-      document.documentElement.classList.toggle("dark", prefersDark);
-    }
-  }, []);
 
   return (
     <div
