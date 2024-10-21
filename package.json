@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "codegen": "rm -rf app/graphql/generated/* && graphql-codegen --config codegen.ts",
-    "codegen:watch": "rm -rf app/graphql/generated/* && graphql-codegen --watch --config codegen.ts"
+    "codegen:watch": "rm -rf app/graphql/generated/* && graphql-codegen --watch --config codegen.ts",
+    "test:e2e:open": "cypress open",
+    "test:e2e:run": "cypress run"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
@@ -48,10 +50,13 @@
     "@graphql-codegen/typescript": "^4.1.0",
     "@graphql-codegen/typescript-operations": "^4.3.0",
     "@graphql-codegen/typescript-react-apollo": "^4.3.2",
+    "@testing-library/cypress": "^10.0.2",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "cypress": "^13.15.0",
+    "cypress-social-logins": "^1.14.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",
