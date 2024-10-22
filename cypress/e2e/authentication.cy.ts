@@ -5,11 +5,11 @@ describe("GitHub Login Test", () => {
   });
 
   it("should redirect to sign-in page if the user is not authenticated", () => {
-    cy.visit(Cypress.env("CYPRESS_BASE_URL"));
+    cy.visit("/");
 
     cy.getCookie(Cypress.env("COOKIE_NAME")).then((cookie) => {
       if (cookie) {
-        cy.url().should("eq", Cypress.env("CYPRESS_BASE_URL"));
+        cy.url().should("eq", "/");
         cy.get("[data-testid='cypress-title']").should("exist");
       } else {
         cy.url().should("include", "/sign-in");
@@ -27,7 +27,7 @@ describe("GitHub Login Test", () => {
       }
     });
 
-    cy.visit(Cypress.env("CYPRESS_BASE_URL"));
+    cy.visit("/");
 
     cy.wait("@getSession");
 
