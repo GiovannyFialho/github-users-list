@@ -17,4 +17,20 @@ describe("GitHub Login Test", () => {
       }
     });
   });
+
+  it("should log in using a mocked GitHub session", () => {
+    cy.mockSession({
+      user: {
+        name: "Giovanny",
+        email: "giovanny@example.com",
+        image: "https://robohash.org/giovanny"
+      }
+    });
+
+    cy.visit(Cypress.env("CYPRESS_BASE_URL"));
+
+    cy.wait("@getSession");
+
+    cy.get('[data-testid="cypress-title"]').should("exist");
+  });
 });

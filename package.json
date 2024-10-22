@@ -10,7 +10,8 @@
     "codegen": "rm -rf app/graphql/generated/* && graphql-codegen --config codegen.ts",
     "codegen:watch": "rm -rf app/graphql/generated/* && graphql-codegen --watch --config codegen.ts",
     "test:e2e:open": "cypress open",
-    "test:e2e:run": "cypress run"
+    "test:e2e:run": "cypress run",
+    "prepare": "npm install && husky"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
@@ -56,9 +57,9 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "cypress": "^13.15.0",
-    "cypress-social-logins": "^1.14.2",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
+    "husky": "^9.1.6",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"

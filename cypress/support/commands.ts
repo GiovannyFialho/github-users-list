@@ -1,5 +1,32 @@
 /// <reference types="cypress" />
 
+Cypress.Commands.add("loginViaGitHub", () => {
+  cy.task("GitHubSocialLogin", {
+    username: Cypress.env("GITHUB_USER"),
+    password: Cypress.env("GITHUB_PASSWORD"),
+    loginUrl: `${Cypress.env("CYPRESS_BASE_URL")}/sign-in`,
+    headless: false,
+    loginSelector: '[data-testid="cypress-btnSignIn"]',
+    postLoginSelector: '[data-testid="cypress-title"]'
+  });
+});
+
+Cypress.Commands.add("mockSession", (session = {}) => {
+  const defaultSession = {
+    user: {
+      name: "Mocked User",
+      email: "mockeduser@example.com",
+      image: "https://robohash.org/mock"
+    },
+    expires: new Date(Date.now() + 86400 * 1000).toISOString()
+  };
+
+  cy.intercept("/api/auth/session", {
+    statusCode: 200,
+    body: { ...defaultSession, ...session }
+  }).as("getSession");
+});
+
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite

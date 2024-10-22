@@ -2,7 +2,12 @@
 
 ## Initialize
 ```
-npm install && npm run dev
+npm run prepare
+```
+
+## Dev environment
+```
+npm run dev
 ```
 
 ### References for color palettes
