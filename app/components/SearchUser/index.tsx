@@ -41,7 +41,7 @@ export default function SearchUser({ search }: SearchUserProps) {
         <Input
           placeholder={t("Home.search.placeholder")}
           className="w-full h-auto text-lg p-0 border-none focus-visible:ring-0 focus-visible:ring-offset-0"
-          data-testid="input-search"
+          data-testid="cypress-inputSearch"
           onFocus={() => setInputFocus(true)}
           onBlur={() => setInputFocus(false)}
           onChange={(element) => setSearchUser(element.target.value)}
@@ -52,7 +52,7 @@ export default function SearchUser({ search }: SearchUserProps) {
       <Button
         type="button"
         className="h-auto text-lg text-background font-medium uppercase rounded-none bg-primary hover:bg-primary-foreground"
-        data-testid="btn-handleSearch"
+        data-testid="cypress-btnHandleSearch"
         onClick={handleSearchUser}
       >
         {t("Home.search.actionSearch")}

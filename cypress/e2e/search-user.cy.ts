@@ -1,5 +1,5 @@
 describe("Search user", () => {
-  before(() => {
+  beforeEach(() => {
     cy.mockSession({
       user: {
         name: "Giovanny",
@@ -8,19 +8,50 @@ describe("Search user", () => {
       }
     });
 
-    cy.visit("/");
+    cy.visit("");
 
     cy.wait("@getSession");
   });
 
-  it("should write in input search and find for users", () => {
+  it("should write in input search and click in the button 'search', after that, it should return users", () => {
     cy.visit("");
 
-    cy.get("[data-testid='input-search']").type("giovanny");
-    cy.get("[data-testid='btn-handleSearch']").click();
+    cy.get("[data-testid='cypress-inputSearch']").type("giovanny");
+    cy.get("[data-testid='cypress-btnHandleSearch']").click();
 
-    cy.get("[data-testid='container-usersList']")
-      .find("[data-testid='user-card']")
+    cy.get("[data-testid='cypress-containerUsersList']")
+      .find("[data-testid='cypress-userCard']")
       .should("have.length.greaterThan", 0);
+  });
+
+  it("should write in the input search and press the 'Enter' key, after that, it should return users", () => {
+    cy.visit("");
+
+    cy.get("[data-testid='cypress-inputSearch']").type("giovanny{enter}");
+
+    cy.get("[data-testid='cypress-containerUsersList']")
+      .find("[data-testid='cypress-userCard']")
+      .should("have.length.greaterThan", 0);
+  });
+
+  it("should write anything in input search and click in the button 'search', after that, it should return any user", () => {
+    cy.visit("");
+
+    cy.get("[data-testid='cypress-btnHandleSearch']").click();
+
+    cy.get("[data-testid='cypress-containerUsersList']")
+      .find("[data-testid='cypress-userCard']")
+      .should("have.length", 0);
+  });
+
+  it("should write in input search some user that doesn't exist and click in the button 'search', after that, it should return a text", () => {
+    cy.visit("");
+
+    cy.get("[data-testid='cypress-inputSearch']").type("uuuu11111222233");
+    cy.get("[data-testid='cypress-btnHandleSearch']").click();
+
+    cy.get("[data-testid='cypress-containerUsersList']")
+      .find("[data-testid='cypress-nobodyFind']")
+      .should("exist");
   });
 });

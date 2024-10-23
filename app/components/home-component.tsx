@@ -58,7 +58,7 @@ export default function HomeComponent() {
 
       <div
         className="max-w-5xl w-full flex flex-col justify-center items-center"
-        data-testid="container-usersList"
+        data-testid="cypress-containerUsersList"
       >
         {loadingUsers ? (
           <RotatingLines
@@ -71,7 +71,10 @@ export default function HomeComponent() {
               <Fragment>
                 {initialState === false && (
                   <div className="w-full px-5">
-                    <p className="text-lg text-center">
+                    <p
+                      className="text-lg text-center"
+                      data-testid="cypress-nobodyFind"
+                    >
                       {t("Home.requests.searchUsers.nobody")}
                     </p>
                   </div>
@@ -86,7 +89,7 @@ export default function HomeComponent() {
                         key={edge.node.id}
                         href={`/${edge.node.id}/${edge.node.login}`}
                         className="w-full flex gap-3 border-4 border-primary transition-all duration-300 shadow-lg hover:shadow"
-                        data-testid="user-card"
+                        data-testid="cypress-userCard"
                       >
                         {edge.node.avatarUrl ? (
                           <Image
