@@ -9,8 +9,8 @@
     "lint": "next lint",
     "codegen": "rm -rf app/graphql/generated/* && graphql-codegen --config codegen.ts",
     "codegen:watch": "rm -rf app/graphql/generated/* && graphql-codegen --watch --config codegen.ts",
-    "test:e2e:open": "cypress open",
-    "test:e2e:run": "cypress run",
+    "test:e2e:open": "cypress open --config baseUrl='http://localhost:3000'",
+    "test:e2e:run": "cypress run --config baseUrl='https://github-users-list-nine.vercel.app'",
     "prepare": "npm install && husky"
   },
   "dependencies": {
@@ -24,6 +24,7 @@
     "@radix-ui/react-toast": "^1.2.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
     "graphql": "^16.9.0",
     "i18next": "^23.15.2",
     "i18next-browser-languagedetector": "^8.0.0",
