@@ -2,7 +2,7 @@
 
 ## Initialize
 ```
-npm run prepare
+npm run initialize
 ```
 
 ## Dev environment

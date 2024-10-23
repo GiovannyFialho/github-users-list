@@ -11,7 +11,7 @@
     "codegen:watch": "rm -rf app/graphql/generated/* && graphql-codegen --watch --config codegen.ts",
     "test:e2e:open": "cypress open --config baseUrl='http://localhost:3000'",
     "test:e2e:run": "cypress run --config baseUrl='https://github-users-list-nine.vercel.app'",
-    "prepare": "npm install && husky"
+    "initialize": "npm install && husky"
   },
   "dependencies": {
     "@apollo/client": "^3.11.8",
