@@ -56,7 +56,10 @@ export default function HomeComponent() {
         <SearchUser search={handleSearch} />
       </div>
 
-      <div className="max-w-5xl w-full flex flex-col justify-center items-center">
+      <div
+        className="max-w-5xl w-full flex flex-col justify-center items-center"
+        data-testid="container-usersList"
+      >
         {loadingUsers ? (
           <RotatingLines
             width="50"
@@ -83,6 +86,7 @@ export default function HomeComponent() {
                         key={edge.node.id}
                         href={`/${edge.node.id}/${edge.node.login}`}
                         className="w-full flex gap-3 border-4 border-primary transition-all duration-300 shadow-lg hover:shadow"
+                        data-testid="user-card"
                       >
                         {edge.node.avatarUrl ? (
                           <Image
