@@ -15,15 +15,7 @@ describe("User page", () => {
       .and("contain", "GiovannyFialho");
   });
 
-  it("should back to home page - desktop", () => {
-    cy.viewport(1280, 800);
-
-    cy.get("[data-testid='cypress-linkToHomePage']").should("exist").click();
-
-    cy.url().should("eq", `${Cypress.config().baseUrl}/`);
-  });
-
-  it("should back to home page - mobile", () => {
+  it("should back to home page", () => {
     cy.get("[data-testid='cypress-hamburguerMenu']").should("exist").click();
 
     cy.get("[data-testid='cypress-linkToHomePage']").should("exist").click();

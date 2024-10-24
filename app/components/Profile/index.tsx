@@ -99,6 +99,7 @@ export default function Profile({ goToProfile }: ProfileProps) {
             <Button
               className="w-full flex items-center justify-start gap-2 text-sm text-background px-3 py-2 bg-transparent focus:bg-primary-foreground focus:text-background focus-visible:ring-0 focus-visible:ring-offset-0"
               onClick={handleSignOut}
+              data-testid="cypress-signOutTrigger"
             >
               <LogOut size={15} className="text-background" />
               {t("Profile.control.signout")}
@@ -152,6 +153,7 @@ export default function Profile({ goToProfile }: ProfileProps) {
             <Button
               className="w-full flex items-center justify-start gap-2 text-lg text-background px-3 py-2 bg-transparent focus:bg-primary-foreground focus:text-background focus-visible:ring-0 focus-visible:ring-offset-0"
               onClick={handleSignOut}
+              data-testid="cypress-signOutTrigger"
             >
               <LogOut size={20} className="text-background" />
               {t("Profile.control.signout")}

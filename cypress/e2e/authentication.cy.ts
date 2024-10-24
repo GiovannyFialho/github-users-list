@@ -18,13 +18,23 @@ describe("GitHub login test", () => {
     });
   });
 
-  it("should log in using a mocked GitHub session", () => {
+  it("should log-in using a mocked GitHub session", () => {
     cy.mockSession();
-
     cy.visit("/");
-
     cy.wait("@getSession");
 
     cy.get('[data-testid="cypress-title"]').should("exist");
+  });
+
+  it("should log-out", () => {
+    cy.mockSession();
+    cy.visit("/");
+    cy.wait("@getSession");
+
+    cy.get("[data-testid='cypress-hamburguerMenu']").should("exist").click();
+    cy.get("[data-testid='cypress-profileTrigger']").should("exist").click();
+    cy.get("[data-testid='cypress-signOutTrigger']").should("exist").click();
+
+    cy.url().should("include", "/sign-in");
   });
 });
