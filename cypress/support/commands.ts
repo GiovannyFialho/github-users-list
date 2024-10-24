@@ -14,17 +14,40 @@ Cypress.Commands.add("loginViaGitHub", () => {
 Cypress.Commands.add("mockSession", (session = {}) => {
   const defaultSession = {
     user: {
-      name: "Mocked User",
-      email: "mockeduser@example.com",
-      image: "https://robohash.org/mock"
+      login: "GiovannyFialho",
+      email: "giovannyf@outlook.com",
+      avatar_url: "https://avatars.githubusercontent.com/u/8743217?v=4",
+      node_id: "MDQ6VXNlcjg3NDMyMTc=",
+      html_url: "https://github.com/GiovannyFialho"
     },
-    expires: new Date(Date.now() + 86400 * 1000).toISOString()
+    expires: "2024-11-23T02:32:20.694Z"
   };
 
   cy.intercept("/api/auth/session", {
     statusCode: 200,
     body: { ...defaultSession, ...session }
   }).as("getSession");
+});
+
+Cypress.Commands.add("visitUserPage", (username) => {
+  cy.visit("");
+
+  cy.get("[data-testid='cypress-inputSearch']").type(username);
+  cy.get("[data-testid='cypress-btnHandleSearch']").click();
+
+  cy.get("[data-testid='cypress-containerUsersList']")
+    .find("[data-testid='cypress-userCard']")
+    .click();
+
+  cy.url().should("contain", username);
+});
+
+Cypress.Commands.add("visiProfilePage", () => {
+  cy.visit("");
+  cy.get("[data-testid='cypress-hamburguerMenu']").should("exist").click();
+  cy.get("[data-testid='cypress-profileTrigger']").should("exist").click();
+
+  cy.get("[data-testid='cypress-linkToProfilePage']").should("exist").click();
 });
 
 // ***********************************************

@@ -9,8 +9,8 @@
     "lint": "next lint",
     "codegen": "rm -rf app/graphql/generated/* && graphql-codegen --config codegen.ts",
     "codegen:watch": "rm -rf app/graphql/generated/* && graphql-codegen --watch --config codegen.ts",
-    "test:e2e:open": "cypress open --config baseUrl='http://localhost:3000'",
-    "test:e2e:run": "cypress run --config baseUrl='https://github-users-list-nine.vercel.app'",
+    "test:e2e:open": "cypress open",
+    "test:e2e:run": "cypress run",
     "initialize": "npm install && husky"
   },
   "dependencies": {

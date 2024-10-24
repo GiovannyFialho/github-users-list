@@ -15,9 +15,28 @@ declare namespace Cypress {
      */
     mockSession(
       session?: Partial<{
-        user: { name: string; email: string; image: string };
+        user: {
+          login: string;
+          email: string;
+          avatar_url: string;
+          node_id: string;
+          html_url: string;
+        };
         expires: string;
       }>
     ): Chainable<void>;
+
+    /**
+     * Custom command to access user page.
+     * @param username username string to access user page
+     * @example cy.visitUserPage("GiovannyFialho")
+     */
+    visitUserPage(username: string): Chainable<void>;
+
+    /**
+     * Custom command to access profile page.
+     * @example cy.visiProfilePage()
+     */
+    visiProfilePage(): Chainable<void>;
   }
 }

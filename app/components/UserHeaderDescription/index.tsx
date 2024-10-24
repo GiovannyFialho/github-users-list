@@ -75,27 +75,30 @@ export default function UserHeaderDescription({
         </div>
       )}
 
-      <div className="flex items-center">
-        <Users size={15} className="mr-2" />
+      {followers ||
+        (following && (
+          <div className="flex items-center">
+            <Users size={15} className="mr-2" />
 
-        {followers && (
-          <div className="flex items-center gap-2">
-            <p className="text-base font-light">
-              {t("Profile.followers", { quantity: followers })}
-            </p>
+            {followers && (
+              <div className="flex items-center gap-2">
+                <p className="text-base font-light">
+                  {t("Profile.followers", { quantity: followers })}
+                </p>
+              </div>
+            )}
+
+            <RxDividerVertical />
+
+            {following && (
+              <div className="flex items-center gap-2">
+                <p className="text-base font-light">
+                  {t("Profile.following", { quantity: following })}
+                </p>
+              </div>
+            )}
           </div>
-        )}
-
-        <RxDividerVertical />
-
-        {following && (
-          <div className="flex items-center gap-2">
-            <p className="text-base font-light">
-              {t("Profile.following", { quantity: following })}
-            </p>
-          </div>
-        )}
-      </div>
+        ))}
     </div>
   );
 }

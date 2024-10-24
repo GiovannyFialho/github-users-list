@@ -74,6 +74,7 @@ export default function Header() {
             {pathname !== "/sign-in" && (
               <Link
                 href="/"
+                data-testid="cypress-linkToHomePage"
                 className={`
                   w-max text-lg font-medium py-0 px-2 outline-none transition-all duration-200
                   relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:bg-primary after:w-full
@@ -100,6 +101,7 @@ export default function Header() {
                 type="button"
                 className="w-10 h-10 p-0 border-none rounded-none text-background hover:text-background bg-primary hover:bg-primary-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
                 variant="outline"
+                data-testid="cypress-hamburguerMenu"
               >
                 <Menu size={20} />
               </Button>
@@ -121,8 +123,11 @@ export default function Header() {
                   type="button"
                   variant="link"
                   onClick={handleGoToHome}
+                  data-testid="cypress-linkToHomePage"
                   className={`
-                    w-max text-lg font-medium mt-10 py-0 px-2 border-b outline-none hover:no-underline hover:border-primary
+                    w-max text-lg font-medium mt-10 py-0 px-2 border-b outline-none
+
+                     hover:no-underline hover:border-primary
                     ${
                       pathname === "/" ? "border-primary" : "border-transparent"
                     }

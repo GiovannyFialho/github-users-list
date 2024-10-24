@@ -1,4 +1,4 @@
-describe("GitHub Login Test", () => {
+describe("GitHub login test", () => {
   beforeEach(() => {
     cy.clearCookies();
     cy.clearLocalStorage();
@@ -19,13 +19,7 @@ describe("GitHub Login Test", () => {
   });
 
   it("should log in using a mocked GitHub session", () => {
-    cy.mockSession({
-      user: {
-        name: "Giovanny",
-        email: "giovanny@example.com",
-        image: "https://robohash.org/giovanny"
-      }
-    });
+    cy.mockSession();
 
     cy.visit("/");
 

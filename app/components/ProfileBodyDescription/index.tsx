@@ -24,6 +24,7 @@ export default function ProfileBodyDescription() {
         href={`/${node_id}/${login}`}
         rel="noopener noreferrer"
         className="w-max flex items-center gap-2 text-lg font-medium text-background px-3 py-1 shadow-lg bg-primary transition-all duration-300 hover:shadow"
+        data-testid="cypress-userPageProfile"
       >
         {t("Profile.seeProfile")}
       </Link>
@@ -90,17 +91,16 @@ export default function ProfileBodyDescription() {
         </div>
       </div>
 
-      {html_url !== "" && (
-        <a
-          href={html_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-max flex items-center gap-2 text-lg font-medium text-background px-3 py-1 mt-20 shadow-lg bg-primary transition-all duration-300 hover:shadow"
-        >
-          <FaGithub />
-          {t("Profile.fullProfile")}
-        </a>
-      )}
+      <a
+        href={html_url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-max flex items-center gap-2 text-lg font-medium text-background px-3 py-1 mt-20 shadow-lg bg-primary transition-all duration-300 hover:shadow"
+        data-testid="cypress-githubProfilePage"
+      >
+        <FaGithub />
+        {t("Profile.fullProfile")}
+      </a>
     </div>
   );
 }

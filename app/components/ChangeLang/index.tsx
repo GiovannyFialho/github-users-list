@@ -58,6 +58,7 @@ export default function ChangeLang() {
             type="button"
             className="w-auto h-10 flex items-center gap-2 border-none rounded-none text-background hover:text-background bg-primary hover:bg-primary-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
             variant="outline"
+            data-testid="cypress-changeLanguageTrigger"
           >
             <Languages className="text-background" />
             {t(`Shared.header.changeLang.${currentLanguage}`)}
@@ -77,6 +78,7 @@ export default function ChangeLang() {
             checked={currentLanguage === "pt-BR"}
             onCheckedChange={() => handleLanguageChange("pt-BR")}
             className="cursor-pointer text-background rounded-none focus:bg-primary-foreground focus:text-background"
+            data-testid="cypress-ptBRLang"
           >
             {t("Shared.header.changeLang.pt-BR")}
           </DropdownMenuCheckboxItem>
@@ -85,6 +87,7 @@ export default function ChangeLang() {
             checked={currentLanguage === "en-US"}
             onCheckedChange={() => handleLanguageChange("en-US")}
             className="cursor-pointer text-background rounded-none focus:bg-primary-foreground focus:text-background"
+            data-testid="cypress-enUSLang"
           >
             {t("Shared.header.changeLang.en-US")}
           </DropdownMenuCheckboxItem>
@@ -100,6 +103,7 @@ export default function ChangeLang() {
           type="button"
           className="w-12 h-12 flex items-center gap-2 p-0 border-none rounded-none text-background hover:text-background bg-primary hover:bg-primary-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
           variant="outline"
+          data-testid="cypress-changeLanguageTrigger"
         >
           <Languages className="text-background" />
         </Button>
@@ -121,9 +125,13 @@ export default function ChangeLang() {
           <div
             className="flex items-center gap-2 py-3 px-2 transition-all duration-300 hover:bg-primary-foreground"
             onClick={() => handleLanguageChange("pt-BR")}
+            data-testid="cypress-ptBRLang"
           >
             {currentLanguage === "pt-BR" && (
-              <Check className="text-background" />
+              <Check
+                className="text-background"
+                data-testid="cypress-languageChecked"
+              />
             )}
             <p className="text-lg text-background">
               {t("Shared.header.changeLang.pt-BR")}
@@ -133,9 +141,13 @@ export default function ChangeLang() {
           <div
             className="flex items-center gap-2 py-3 px-2 transition-all duration-300 hover:bg-primary-foreground"
             onClick={() => handleLanguageChange("en-US")}
+            data-testid="cypress-enUSLang"
           >
             {currentLanguage === "en-US" && (
-              <Check className="text-background" />
+              <Check
+                className="text-background"
+                data-testid="cypress-languageChecked"
+              />
             )}
             <p className="text-lg text-background">
               {t("Shared.header.changeLang.en-US")}

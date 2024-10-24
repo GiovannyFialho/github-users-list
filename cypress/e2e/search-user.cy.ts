@@ -1,12 +1,6 @@
 describe("Search user", () => {
   beforeEach(() => {
-    cy.mockSession({
-      user: {
-        name: "Giovanny",
-        email: "giovanny@example.com",
-        image: "https://robohash.org/giovanny"
-      }
-    });
+    cy.mockSession();
 
     cy.visit("");
 
@@ -53,5 +47,18 @@ describe("Search user", () => {
     cy.get("[data-testid='cypress-containerUsersList']")
       .find("[data-testid='cypress-nobodyFind']")
       .should("exist");
+  });
+
+  it("should access user page", () => {
+    cy.visit("");
+
+    cy.get("[data-testid='cypress-inputSearch']").type("GiovannyFialho");
+    cy.get("[data-testid='cypress-btnHandleSearch']").click();
+
+    cy.get("[data-testid='cypress-containerUsersList']")
+      .find("[data-testid='cypress-userCard']")
+      .click();
+
+    cy.url().should("contain", "GiovannyFialho");
   });
 });

@@ -56,7 +56,10 @@ export default function Profile({ goToProfile }: ProfileProps) {
     return (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button className="w-10 h-10 p-1 border-2 border-primary rounded-none bg-primary focus-visible:ring-0 hover:bg-primary-foreground">
+          <Button
+            className="w-10 h-10 p-1 border-2 border-primary rounded-none bg-primary focus-visible:ring-0 hover:bg-primary-foreground"
+            data-testid="cypress-profileTrigger"
+          >
             {sessionData.user?.avatar_url ? (
               <Image
                 src={sessionData.user?.avatar_url}
@@ -83,6 +86,7 @@ export default function Profile({ goToProfile }: ProfileProps) {
             <Link
               href="/profile"
               className="cursor-pointer text-sm text-background h-10 px-3 py-2 rounded-none focus:bg-primary-foreground focus:text-background"
+              data-testid="cypress-linkToProfilePage"
             >
               {t("Profile.head.title")}
             </Link>
@@ -107,7 +111,10 @@ export default function Profile({ goToProfile }: ProfileProps) {
     return (
       <Drawer open={open} onOpenChange={setOpen}>
         <DrawerTrigger asChild>
-          <Button className="w-12 h-12 p-1 border-2 border-primary rounded-none bg-primary focus-visible:ring-0 hover:bg-primary-foreground">
+          <Button
+            className="w-12 h-12 p-1 border-2 border-primary rounded-none bg-primary focus-visible:ring-0 hover:bg-primary-foreground"
+            data-testid="cypress-profileTrigger"
+          >
             {sessionData.user?.avatar_url ? (
               <Image
                 src={sessionData.user?.avatar_url}
@@ -136,6 +143,7 @@ export default function Profile({ goToProfile }: ProfileProps) {
             <Button
               className="cursor-pointer w-full flex items-center justify-start gap-2 text-lg text-background h-10 px-3 py-2 rounded-none focus:bg-primary-foreground focus:text-background"
               onClick={handleGoToProfile}
+              data-testid="cypress-linkToProfilePage"
             >
               <User size={20} className="text-background" />
               {t("Profile.head.title")}

@@ -233,17 +233,16 @@ export default function UserBodyDescription() {
         </div>
       )}
 
-      {url !== "" && (
-        <a
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-max flex items-center gap-2 text-lg font-medium text-background px-3 py-1 mt-20 shadow-lg bg-primary transition-all duration-300 hover:shadow"
-        >
-          <FaGithub />
-          {t("Profile.fullProfile")}
-        </a>
-      )}
+      <a
+        href={url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="w-max flex items-center gap-2 text-lg font-medium text-background px-3 py-1 mt-20 shadow-lg bg-primary transition-all duration-300 hover:shadow"
+        data-testid="cypress-userGithubURL"
+      >
+        <FaGithub />
+        {t("Profile.fullProfile")}
+      </a>
     </div>
   );
 }
