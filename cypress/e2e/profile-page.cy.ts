@@ -8,19 +8,19 @@ describe("Change language", () => {
   });
 
   it("should open profile drawer and access profile page", () => {
-    cy.visiProfilePage();
+    cy.visitProfilePage();
 
     cy.url().should("contain", "/profile");
   });
 
   it("should verify user page link", () => {
-    cy.visiProfilePage();
+    cy.visitProfilePage();
 
     cy.get("[data-testid='cypress-userPageProfile']").should("exist").click();
   });
 
   it("should verify github profile link page", () => {
-    cy.visiProfilePage();
+    cy.visitProfilePage();
 
     cy.get("[data-testid='cypress-githubProfilePage']")
       .should("have.attr", "href")

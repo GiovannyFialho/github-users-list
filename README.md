@@ -33,3 +33,6 @@ After that, click on the "Generate new token" button and choose the "Generate ne
 
 - [Apollo Client](https://www.apollographql.com/)
 - [GraphQL Codegen](https://the-guild.dev/graphql/codegen) (For generating types for Queries, Mutations, and Fragments)
+
+#### Tests (E2E and Components)
+- [Cypress](https://www.cypress.io/)

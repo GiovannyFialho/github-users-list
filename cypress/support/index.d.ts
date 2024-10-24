@@ -35,8 +35,8 @@ declare namespace Cypress {
 
     /**
      * Custom command to access profile page.
-     * @example cy.visiProfilePage()
+     * @example cy.visitProfilePage()
      */
-    visiProfilePage(): Chainable<void>;
+    visitProfilePage(): Chainable<void>;
   }
 }

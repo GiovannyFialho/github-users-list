@@ -35,7 +35,7 @@ export default function ProfileBodyDescription() {
         </h2>
 
         <div className="flex flex-col gap-2">
-          <p>
+          <p data-testid="cypress-profileID">
             <strong>ID:</strong> {id}
           </p>
 

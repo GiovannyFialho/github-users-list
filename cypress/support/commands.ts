@@ -42,7 +42,7 @@ Cypress.Commands.add("visitUserPage", (username) => {
   cy.url().should("contain", username);
 });
 
-Cypress.Commands.add("visiProfilePage", () => {
+Cypress.Commands.add("visitProfilePage", () => {
   cy.visit("");
   cy.get("[data-testid='cypress-hamburguerMenu']").should("exist").click();
   cy.get("[data-testid='cypress-profileTrigger']").should("exist").click();
