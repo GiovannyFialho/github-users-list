@@ -8,7 +8,7 @@ import { I18nextProvider, useTranslation } from "react-i18next";
 import { RotatingLines } from "react-loader-spinner";
 
 import { ThemeProvider } from "@/app/context/ThemeContext";
-import { UserProfileProvider } from "@/app/context/UserProfileContext";
+import ProfileProvider from "@/app/providers/profileProvider";
 
 import { client } from "@/app/lib/client";
 
@@ -38,7 +38,7 @@ export function Providers({ children, initialTheme }: ProvidersProps) {
       <SessionProvider>
         <I18nextProvider i18n={i18next}>
           <ThemeProvider initialTheme={initialTheme}>
-            <UserProfileProvider>{children}</UserProfileProvider>
+            <ProfileProvider>{children}</ProfileProvider>
           </ThemeProvider>
         </I18nextProvider>
       </SessionProvider>

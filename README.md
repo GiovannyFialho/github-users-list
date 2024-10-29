@@ -36,3 +36,7 @@ After that, click on the "Generate new token" button and choose the "Generate ne
 
 #### Tests (E2E and Components)
 - [Cypress](https://www.cypress.io/)
+
+#### Context
+> For the theme management functionality, I used createContext from React.
+- [Zustand](https://zustand-demo.pmnd.rs/)

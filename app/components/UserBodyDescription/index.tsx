@@ -11,18 +11,17 @@ import {
 import { useTranslation } from "react-i18next";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
 
-import { useUserProfile } from "@/app/context/UserProfileContext";
+import { useProfileStore } from "@/app/providers/profileProvider";
 
 export default function UserBodyDescription() {
   const { t } = useTranslation();
-  const { userProfile } = useUserProfile();
+  const profile = useProfileStore((state) => state.profile);
 
-  if (!userProfile) {
+  if (!profile) {
     return null;
   }
 
-  const { bio, location, repositories, socialAccounts, url, gists } =
-    userProfile;
+  const { bio, location, repositories, socialAccounts, url, gists } = profile;
 
   return (
     <div className="flex flex-col gap-5">

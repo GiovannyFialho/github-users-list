@@ -8,7 +8,7 @@ import { toast } from "sonner";
 
 import UserDetailComponent from "@/app/components/user-detail-component";
 
-import { useUserProfile } from "@/app/context/UserProfileContext";
+import { useProfileStore } from "@/app/providers/profileProvider";
 
 import { useGetUserLazyQuery } from "@/app/graphql/generated";
 
@@ -17,7 +17,7 @@ import tailwindConfig from "@/tailwind.config";
 export default function UserComponent() {
   const { t } = useTranslation();
   const params = useParams();
-  const { setUserProfile } = useUserProfile();
+  const updateProfile = useProfileStore((state) => state.updateProfile);
 
   const [getUser, { data: user, loading: loadingUser, error: errorUser }] =
     useGetUserLazyQuery();
@@ -36,11 +36,11 @@ export default function UserComponent() {
     if (typeof params.name === "string") {
       getUser({ variables: { login: params.name } }).then((result) => {
         if (result?.data?.user) {
-          setUserProfile(result.data.user);
+          updateProfile(result.data.user);
         }
       });
     }
-  }, [getUser, params, setUserProfile]);
+  }, [getUser, params, updateProfile]);
 
   return (
     <div className="w-full min-h-[calc(100vh-144px)] flex justify-center my-10">
