@@ -106,6 +106,7 @@ export default function HomeComponent() {
                           <h3 className="text-base font-bold">
                             {edge.node.name}
                           </h3>
+
                           <p className="text-sm font-normal">
                             {edge.node.login}
                           </p>
